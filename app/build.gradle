@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+def globalConfig = rootProject.extensions.getByName("ext")
+android {
+    compileSdkVersion globalConfig.getAt("ANDROID_COMPILE_SDK_VERSION") as int
+    buildToolsVersion globalConfig.getAt("ANDROID_BUILD_TOOLS_VERSION")
+
+    defaultConfig {
+        applicationId "dreamspace.com.yoyomarket"
+        minSdkVersion globalConfig.getAt("ANDROID_BUILD_MIN_SDK_VERSION") as int
+        targetSdkVersion globalConfig.getAt("ANDROID_TARGET_SDK_VERSION") as int
+        versionCode globalConfig.getAt("VERSION_CODE") as int
+        versionName globalConfig.getAt("VERSION_NAME")
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        //Butterknife
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+}
+
+def SUPPORT_VERSION = "23.1.1"
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:' + SUPPORT_VERSION
+
+    //dagger2
+    compile 'com.google.dagger:dagger:2.0.2'
+    apt 'com.google.dagger:dagger-compiler:2.0.2'
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    compile 'io.reactivex:rxjava:1.0.14'
+
+    // retrofit
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+}
