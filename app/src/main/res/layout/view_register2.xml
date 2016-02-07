@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/submit_code_rl"
+        android:layout_marginTop="@dimen/y85"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/x471"
+        android:layout_height="@dimen/y45">
+        <ImageView
+            android:id="@+id/code_iv"
+            android:src="@drawable/ic_code"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginTop="@dimen/y10"
+            android:layout_width="@dimen/x33"
+            android:layout_height="@dimen/y27" />
+        <EditText
+            android:id="@+id/submit_code_et"
+            android:hint="@string/code_hint"
+            android:textSize="@dimen/y23"
+            android:textColor="@color/black1"
+            android:textColorHint="@color/hint_color"
+            android:inputType="number"
+            android:maxLength="6"
+            android:layout_toRightOf="@id/code_iv"
+            android:layout_marginLeft="@dimen/x35"
+            android:paddingBottom="@dimen/y7"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/submit_code_btn"
+        android:text="@string/submit_code"
+        android:textColor="@color/white"
+        android:textSize="@dimen/y25"
+        android:layout_below="@id/submit_code_rl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y60"
+        android:background="@drawable/btn_orange_bg"
+        android:layout_width="@dimen/x477"
+        android:layout_height="@dimen/y67" />
+</RelativeLayout>

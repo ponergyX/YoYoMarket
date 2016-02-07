@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/y22"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar_civ"
+        android:src="@color/gray5"
+        android:layout_marginLeft="@dimen/x36"
+        android:layout_marginTop="@dimen/y23"
+        android:layout_width="@dimen/x53"
+        android:layout_height="@dimen/x53" />
+    <TextView
+        android:id="@+id/phone_num_tv"
+        android:text="1565196XXXX"
+        android:textColor="@color/black2"
+        android:textSize="@dimen/y20"
+        android:layout_marginLeft="@dimen/x18"
+        android:layout_marginTop="@dimen/y30"
+        android:layout_toRightOf="@id/avatar_civ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <dreamspace.com.yoyomarket.widget.RatingBar
+        android:id="@+id/comment_ratingbar"
+        android:layout_below="@id/phone_num_tv"
+        android:layout_alignLeft="@id/phone_num_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y2"
+        app:starCount="5"
+        app:starImageSize="@dimen/x20"
+        app:starEmpty="@drawable/rating_star"
+        app:starFill="@drawable/rating_star_s"
+        app:paddingStart="@dimen/x3"/>
+    <TextView
+        android:id="@+id/date_time"
+        android:text="2016-02-05"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/y20"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/phone_num_tv"
+        android:layout_marginRight="@dimen/x34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="不错不错！！！"
+        android:textColor="@color/black2"
+        android:textSize="@dimen/y24"
+        android:singleLine="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/x38"
+        android:layout_marginRight="@dimen/x70"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

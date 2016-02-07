@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/click_white_bg"
+    android:id="@+id/get_good_address_item_rl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar_civ"
+        android:src="@color/gray5"
+        android:layout_marginLeft="@dimen/x29"
+        android:layout_marginTop="@dimen/y23"
+        android:layout_marginBottom="@dimen/y26"
+        android:layout_width="@dimen/x90"
+        android:layout_height="@dimen/y90" />
+    <TextView
+        android:text="梅4B 218"
+        android:id="@+id/location_tv"
+        android:textSize="@dimen/y23"
+        android:textColor="@color/black"
+        android:layout_toRightOf="@id/avatar_civ"
+        android:layout_marginTop="@dimen/y47"
+        android:layout_marginLeft="@dimen/x34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="15651960565"
+        android:id="@+id/phone_num_tv"
+        android:textColor="@color/black"
+        android:textSize="@dimen/y20"
+        android:layout_alignLeft="@id/location_tv"
+        android:layout_below="@id/location_tv"
+        android:layout_marginTop="@dimen/y10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="男生"
+        android:id="@+id/sex_tv"
+        android:textColor="@color/app_color"
+        android:textSize="@dimen/y17"
+        android:layout_alignBottom="@id/location_tv"
+        android:layout_toRightOf="@id/location_tv"
+        android:layout_marginLeft="@dimen/x26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

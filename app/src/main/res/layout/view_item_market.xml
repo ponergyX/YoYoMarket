@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/click_white_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/market_iv"
+        android:layout_marginLeft="@dimen/x31"
+        android:layout_marginTop="@dimen/y21"
+        android:layout_marginBottom="@dimen/y18"
+        android:background="@color/gray1"
+        android:layout_width="@dimen/x243"
+        android:layout_height="@dimen/y199" />
+    <TextView
+        android:text="东大小只有"
+        android:id="@+id/market_name_tv"
+        android:textColor="@color/black2"
+        android:textSize="@dimen/y26"
+        android:layout_toRightOf="@id/market_iv"
+        android:layout_marginTop="@dimen/y45"
+        android:layout_marginLeft="@dimen/x28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <dreamspace.com.yoyomarket.widget.RatingBar
+        android:id="@+id/market_ratingbar"
+        android:layout_alignLeft="@id/market_name_tv"
+        android:layout_below="@id/market_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y15"
+        app:starCount="5"
+        app:starImageSize="@dimen/x30"
+        app:starEmpty="@drawable/rating_star"
+        app:starFill="@drawable/rating_star_s"
+        app:paddingStart="@dimen/x7"/>
+    <TextView
+        android:text="月售1000单"
+        android:id="@+id/month_sale_tv"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/y20"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/market_ratingbar"
+        android:layout_marginRight="@dimen/x33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_alignLeft="@id/market_name_tv"
+        android:layout_below="@id/market_ratingbar"
+        android:layout_marginTop="@dimen/y60"
+        android:layout_marginRight="@dimen/x32"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="10元起送"
+            android:id="@+id/start_price_tv"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/y20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="10元配送费"
+            android:id="@+id/take_price_tv"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/y20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="1小时到达"
+            android:id="@+id/take_time_tv"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/y20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

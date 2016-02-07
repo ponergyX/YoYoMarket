@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/phone_num_rl"
+        android:layout_marginTop="@dimen/y130"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/x471"
+        android:layout_height="@dimen/y50">
+        <ImageView
+            android:id="@+id/phone_iv"
+            android:src="@drawable/ic_phone_num"
+            android:layout_marginLeft="@dimen/x28"
+            android:layout_width="@dimen/x22"
+            android:layout_height="@dimen/y40" />
+        <EditText
+            android:id="@+id/phone_et"
+            android:hint="@string/phone_hint"
+            android:textSize="@dimen/y23"
+            android:textColor="@color/black1"
+            android:textColorHint="@color/hint_color"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:layout_toRightOf="@id/phone_iv"
+            android:layout_marginLeft="@dimen/x41"
+            android:paddingBottom="@dimen/y7"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/pwd_rl"
+        android:layout_below="@id/phone_num_rl"
+        android:layout_marginTop="@dimen/y45"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/x471"
+        android:layout_height="@dimen/y45">
+        <ImageView
+            android:id="@+id/pwd_iv"
+            android:src="@drawable/ic_locker"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginTop="@dimen/y4"
+            android:layout_width="@dimen/x24"
+            android:layout_height="@dimen/y33" />
+        <EditText
+            android:id="@+id/pwd_et"
+            android:hint="@string/pwd_hint"
+            android:textSize="@dimen/y23"
+            android:textColor="@color/black1"
+            android:textColorHint="@color/hint_color"
+            android:maxLength="20"
+            android:inputType="textPassword"
+            android:layout_toRightOf="@id/pwd_iv"
+            android:layout_marginLeft="@dimen/x41"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="@dimen/y25"
+        android:layout_below="@id/pwd_rl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y58"
+        android:background="@drawable/btn_orange_bg"
+        android:layout_width="@dimen/x477"
+        android:layout_height="@dimen/y67" />
+
+    <TextView
+        android:id="@+id/find_pwd_tv"
+        android:paddingTop="@dimen/y6"
+        android:paddingBottom="@dimen/y6"
+        android:text="@string/find_psw"
+        android:textColor="@color/black1"
+        android:textSize="@dimen/y26"
+        android:layout_alignLeft="@id/login_btn"
+        android:layout_below="@id/login_btn"
+        android:layout_marginTop="@dimen/y15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/register_tv"
+        android:paddingLeft="@dimen/x6"
+        android:paddingTop="@dimen/y6"
+        android:paddingBottom="@dimen/y6"
+        android:text="@string/register"
+        android:textColor="@color/black1"
+        android:textSize="@dimen/y26"
+        android:layout_alignRight="@id/login_btn"
+        android:layout_below="@id/login_btn"
+        android:layout_marginTop="@dimen/y15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

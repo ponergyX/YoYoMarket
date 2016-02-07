@@ -6,4 +6,5 @@ ext {
     ANDROID_BUILD_TOOLS_VERSION='23.0.1'
     VERSION_NAME='1.0.0'
     VERSION_CODE=1000
+    END_POINT='https://api.yoyocampus.com/'
 }
