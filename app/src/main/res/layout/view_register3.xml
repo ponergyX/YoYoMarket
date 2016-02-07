@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/pwd_rl"
+        android:layout_marginTop="@dimen/y85"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/x471"
+        android:layout_height="@dimen/y45">
+        <ImageView
+            android:id="@+id/pwd_iv"
+            android:src="@drawable/ic_locker"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginTop="@dimen/y4"
+            android:layout_width="@dimen/x24"
+            android:layout_height="@dimen/y33" />
+        <EditText
+            android:id="@+id/pwd_et"
+            android:hint="@string/pwd_hint"
+            android:textSize="@dimen/y23"
+            android:textColor="@color/black1"
+            android:textColorHint="@color/hint_color"
+            android:maxLength="20"
+            android:inputType="textPassword"
+            android:layout_toRightOf="@id/pwd_iv"
+            android:layout_marginLeft="@dimen/x41"
+            android:paddingBottom="@dimen/y7"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/pwd_confrim_rl"
+        android:layout_marginTop="@dimen/y37"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/pwd_rl"
+        android:layout_width="@dimen/x471"
+        android:layout_height="@dimen/y45">
+        <ImageView
+            android:id="@+id/pwd_iv2"
+            android:src="@drawable/ic_locker"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginTop="@dimen/y4"
+            android:layout_width="@dimen/x24"
+            android:layout_height="@dimen/y33" />
+        <EditText
+            android:id="@+id/pwd_confrim_et"
+            android:hint="@string/input_pwd_again"
+            android:textSize="@dimen/y23"
+            android:textColor="@color/black1"
+            android:textColorHint="@color/hint_color"
+            android:maxLength="20"
+            android:inputType="textPassword"
+            android:layout_toRightOf="@id/pwd_iv2"
+            android:layout_marginLeft="@dimen/x41"
+            android:paddingBottom="@dimen/y7"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/different_pwd_tv"
+        android:text="@string/two_pwd_different"
+        android:textSize="@dimen/y18"
+        android:textColor="@color/app_color"
+        android:layout_alignRight="@id/pwd_confrim_rl"
+        android:layout_below="@id/pwd_confrim_rl"
+        android:layout_marginTop="@dimen/y16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/confirm_btn"
+        android:text="@string/confirm"
+        android:textColor="@color/white"
+        android:textSize="@dimen/y25"
+        android:layout_below="@id/pwd_confrim_rl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y71"
+        android:background="@drawable/btn_orange_bg"
+        android:layout_width="@dimen/x477"
+        android:layout_height="@dimen/y67" />
+</RelativeLayout>

@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+def globalConfig = rootProject.extensions.getByName("ext")
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.1'
+
+    defaultConfig {
+        applicationId "dreamspace.com.yoyomarket"
+        minSdkVersion globalConfig.getAt("ANDROID_BUILD_MIN_SDK_VERSION") as int
+        targetSdkVersion globalConfig.getAt("ANDROID_TARGET_SDK_VERSION") as int
+        versionCode globalConfig.getAt("VERSION_CODE") as int
+        versionName globalConfig.getAt("VERSION_NAME")
+        renderscriptTargetApi 23
+        renderscriptSupportModeEnabled true
+
+        buildConfigField "String", "ENDPOINT", "\"https://api.yoyocampus.com/v1.0/\""
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        //Butterknife
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+}
+
+def SUPPORT_VERSION = "23.1.1"
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:support-annotations:' + SUPPORT_VERSION
+    compile 'com.android.support:appcompat-v7:' + SUPPORT_VERSION
+    compile 'com.android.support:design:' + SUPPORT_VERSION
+    compile 'com.android.support:cardview-v7:' + SUPPORT_VERSION
+
+    //dagger2
+    compile 'com.google.dagger:dagger:2.0.2'
+    apt 'com.google.dagger:dagger-compiler:2.0.2'
+    provided 'javax.annotation:jsr250-api:1.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.0'
+    // retrofit
+    compile 'com.squareup.okhttp3:okhttp:3.0.1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta3'
+    compile 'com.github.orhanobut:logger:1.12'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta3'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
+    // or 1.4-beta1
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
+    // or 1.4-beta1
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
+    // or 1.4-beta1
+    compile 'com.kennyc:multistateview:1.1'
+    //smarttablayout
+    compile 'com.ogaclejapan.smarttablayout:library:1.6.0@aar'
+    compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.0@aar'
+    compile 'com.bigkoo:convenientbanner:2.0.5'
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support:support-v4:19.1.0'
+    compile 'jp.wasabeef:glide-transformations:1.3.1'
+    // If you want to use the GPU Filters
+    compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.3.0'
+}

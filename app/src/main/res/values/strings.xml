@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">YoYoMarket</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="my_orders">我的订单</string>
+    <string name="personal_setting">个人设置</string>
+    <string name="logout">登出</string>
+
+    <string name="change_password">修改密码</string>
+    <string name="my_get_good_address">我的收货地址</string>
+    <string name="feedback">意见反馈</string>
+    <string name="service_phone">客服电话</string>
+    <string name="common_problems">常见问题</string>
+    <string name="about_us">关于我们</string>
+
+    <string name="phone_login">手机快捷登录</string>
+    <string name="normal_login">普通登录</string>
+    <string name="get_code">获取验证码</string>
+    <string name="phone_hint">请输入您的手机号</string>
+    <string name="code_hint">请输入您的验证码</string>
+    <string name="pwd_hint">请输入您的密码</string>
+    <string name="login">登录</string>
+    <string name="find_psw">找回密码</string>
+    <string name="register">注册</string>
+
+    <string name="input_phone_num">输入手机号</string>
+    <string name="input_code">输入验证码</string>
+    <string name="set_pwd">设置密码</string>
+    <string name="read_protocol">我已阅读并接受</string>
+    <string name="user_protocol">用户协议</string>
+    <string name="submit_code">提交验证码</string>
+    <string name="input_pwd_again">请再次输入您的密码</string>
+    <string name="two_pwd_different">两次输入不一致</string>
+    <string name="confirm">确定</string>
+    <string name="enter_new_pwd_hint">请输入您的新密码</string>
+    <string name="confirm_new_pwd_hint">请再次输入您的新密码</string>
+    <string name="chang_pwd">修改密码</string>
+    <string name="find_back_pwd">找回密码</string>
+
+    <string name="get_good_info">收货信息</string>
+    <string name="add_get_good_info">添加收货人信息</string>
+    <string name="modify_address">修改地址</string>
+    <string name="add_address">添加地址</string>
+    <string name="address">地址:</string>
+    <string name="phone">电话:</string>
+    <string name="sex">身份:</string>
+    <string name="boy">男生</string>
+    <string name="gril">女生</string>
+    
+    <string name="feedback_hint">请在这里写下您的感受，我们将不断进步，做得更好~</string>
+    <string name="contact_way">联系方式:</string>
+    <string name="contact_way_hint">邮箱/手机</string>
+    <string name="submit">提交</string>
+
+    <string name="pick_finish">选好啦</string>
+    <string name="search_in_shop">输入商品名称，进行店内搜索</string>
+    <string name="shop_announcement">商家公告</string>
+    <string name="send_good_time">送货时间:</string>
+    <string name="start_send_time">起送时间:</string>
+    <string name="start_send_price">起送价格:</string>
+    <string name="shop_address">超市地址:</string>
+    <string name="check_comment">查看评价</string>
+    <string name="shop_info">超市详情</string>
+    <string name="all_comments">所有评价</string>
+    
+    <string name="tab_markets">markets</string>
+    <string name="tab_orders">orders</string>
+    <string name="tab_mine">mine</string>
+
+    <string name="loading">加载中...</string>
+    <string name="net_error">数据获取失败，请检查网络</string>
+    <string name="retry">重新加载</string>
+</resources>

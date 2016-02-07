@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/common_toolbar"/>
+    <RelativeLayout
+        android:id="@+id/shop_image_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y291">
+        <ImageView
+            android:id="@+id/shop_image_iv"
+            android:src="@drawable/preview4"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/shop_name_tv"
+                android:text="东大校之友"
+                android:textColor="@color/white"
+                android:textSize="@dimen/y29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <dreamspace.com.yoyomarket.widget.RatingBar
+                android:id="@+id/market_ratingbar"
+                android:layout_below="@id/shop_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y15"
+                app:starCount="5"
+                app:starImageSize="@dimen/x32"
+                app:starEmpty="@drawable/rating_star"
+                app:starFill="@drawable/rating_star_s"
+                app:paddingStart="@dimen/x7"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/info_cardview"
+        android:elevation="6dp"
+        android:radius="5dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y30"
+        android:layout_width="@dimen/x579"
+        android:layout_height="@dimen/y314">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/announcement_tv"
+                android:text="@string/shop_announcement"
+                android:textColor="@color/white"
+                android:textSize="@dimen/y26"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/y23"
+                android:background="@drawable/radius_orange_btn"
+                android:layout_width="@dimen/x200"
+                android:layout_height="@dimen/y44" />
+            <TextView
+                android:id="@+id/send_good_time_tv"
+                android:text="@string/send_good_time"
+                android:textColor="@color/black"
+                android:textSize="@dimen/y23"
+                android:layout_below="@id/announcement_tv"
+                android:layout_marginLeft="@dimen/x51"
+                android:layout_marginTop="@dimen/y51"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/send_time_tv"
+                android:text="7:00-21:00"
+                android:textColor="@color/black"
+                android:textSize="@dimen/y23"
+                android:layout_below="@id/announcement_tv"
+                android:layout_toRightOf="@id/send_good_time_tv"
+                android:layout_marginLeft="@dimen/x21"
+                android:layout_marginTop="@dimen/y51"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/start_send_time_tv"
+                android:text="@string/start_send_time"
+                android:textColor="@color/black"
+                android:textSize="@dimen/y23"
+                android:layout_below="@id/send_good_time_tv"
+                android:layout_marginLeft="@dimen/x51"
+                android:layout_marginTop="@dimen/y13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/start_time_tv"
+                android:text="7:00/12:00/15:00/18:00/21:00"
+                android:textColor="@color/black"
+                android:textSize="@dimen/y23"
+                android:layout_below="@id/send_good_time_tv"
+                android:layout_toRightOf="@id/start_send_time_tv"
+                android:layout_marginLeft="@dimen/x21"
+                android:layout_marginTop="@dimen/y13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/start_send_price_tv"
+                android:text="@string/start_send_price"
+                android:textColor="@color/black"
+                android:textSize="@dimen/y23"
+                android:layout_below="@id/start_send_time_tv"
+                android:layout_marginLeft="@dimen/x51"
+                android:layout_marginTop="@dimen/y13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/start_price_tv"
+                android:text="10元"
+                android:textColor="@color/black"
+                android:textSize="@dimen/y23"
+                android:layout_below="@id/start_send_time_tv"
+                android:layout_toRightOf="@id/start_send_price_tv"
+                android:layout_marginLeft="@dimen/x21"
+                android:layout_marginTop="@dimen/y13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/shop_address_tv"
+                android:text="@string/shop_address"
+                android:textColor="@color/black"
+                android:textSize="@dimen/y23"
+                android:layout_below="@id/start_send_price_tv"
+                android:layout_marginLeft="@dimen/x51"
+                android:layout_marginTop="@dimen/y13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/address_tv"
+                android:text="南京市江宁区东南大学九龙湖校区"
+                android:textColor="@color/black"
+                android:textSize="@dimen/y23"
+                android:layout_below="@id/start_send_price_tv"
+                android:layout_toRightOf="@id/shop_address_tv"
+                android:layout_marginLeft="@dimen/x21"
+                android:layout_marginTop="@dimen/y13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <ImageView
+        android:background="@color/gray6"
+        android:layout_marginTop="@dimen/y30"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y27" />
+
+    <RelativeLayout
+        android:id="@+id/check_more_rl"
+        android:background="@drawable/click_white_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y75">
+        <TextView
+            android:id="@+id/check_comment_tv"
+            android:text="@string/check_comment"
+            android:textColor="@color/black"
+            android:textSize="@dimen/y27"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/total_tv"
+            android:text="(共计230条)"
+            android:textColor="@color/gray9"
+            android:textSize="@dimen/y24"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/check_comment_tv"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@drawable/ic_right_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x33"
+            android:layout_width="@dimen/x12"
+            android:layout_height="@dimen/y24" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            layout="@layout/view_shop_info_comment"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_width="match_parent" />
+        <ImageView
+            android:background="@color/gray2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+        <include
+            layout="@layout/view_shop_info_comment"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+</LinearLayout>

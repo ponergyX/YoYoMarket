@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/gray2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/common_toolbar"/>
+
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/orders_msview"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:msv_errorView="@layout/common_retry_view"
+        app:msv_loadingView="@layout/common_loading_view"
+        app:msv_emptyView="@layout/common_empty_view">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swrlayout"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+            <dreamspace.com.yoyomarket.widget.LoadMoreRecyclerView
+                android:id="@+id/order_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </com.kennyc.view.MultiStateView>
+</RelativeLayout>

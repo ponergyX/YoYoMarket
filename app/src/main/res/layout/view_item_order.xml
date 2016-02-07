@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y220">
+    <ImageView
+        android:layout_alignParentTop="true"
+        android:background="@color/gray2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2" />
+    <ImageView
+        android:id="@+id/time_iv"
+        android:src="@drawable/ic_order_clock"
+        android:layout_marginLeft="@dimen/x31"
+        android:layout_marginTop="@dimen/y22"
+        android:layout_width="@dimen/x29"
+        android:layout_height="@dimen/y29" />
+    <TextView
+        android:text="今日8：00"
+        android:id="@+id/time_tv"
+        android:textSize="@dimen/y26"
+        android:textColor="@color/black2"
+        android:layout_alignBottom="@id/time_iv"
+        android:layout_toRightOf="@id/time_iv"
+        android:layout_marginLeft="@dimen/x13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/divider_below_clock"
+        android:layout_below="@id/time_iv"
+        android:layout_marginTop="@dimen/y14"
+        android:background="@color/gray2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2" />
+    <ImageView
+        android:id="@+id/order_image_iv1"
+        android:src="@drawable/ic_market"
+        android:padding="@dimen/x10"
+        android:background="@drawable/order_image_bg"
+        android:layout_below="@id/divider_below_clock"
+        android:layout_marginLeft="@dimen/x31"
+        android:layout_marginTop="@dimen/y24"
+        android:layout_width="@dimen/x103"
+        android:layout_height="@dimen/y103" />
+    <ImageView
+        android:id="@+id/order_image_iv2"
+        android:src="@drawable/shopping_cart"
+        android:padding="@dimen/x10"
+        android:background="@drawable/order_image_bg"
+        android:layout_below="@id/divider_below_clock"
+        android:layout_toRightOf="@id/order_image_iv1"
+        android:layout_marginLeft="@dimen/x17"
+        android:layout_marginTop="@dimen/y24"
+        android:layout_width="@dimen/x103"
+        android:layout_height="@dimen/y103" />
+    <Button
+        android:text="再来一单"
+        android:id="@+id/order_btn"
+        android:textColor="@color/white"
+        android:textSize="@dimen/y23"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/y34"
+        android:layout_marginRight="@dimen/x33"
+        android:background="@drawable/btn_orange_bg"
+        android:layout_width="@dimen/x152"
+        android:layout_height="@dimen/y40" />
+    <TextView
+        android:text="订单完成"
+        android:id="@+id/state_tv"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/order_btn"
+        android:layout_marginRight="@dimen/x55"
+        android:layout_marginBottom="@dimen/y15"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/y23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/in_send_ll"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_above="@id/order_btn"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x47"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="配送中"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/y23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="预计8.30送达"
+            android:id="@+id/get_time_tv"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/y20"
+            android:layout_marginTop="@dimen/y9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2" />
+</RelativeLayout>

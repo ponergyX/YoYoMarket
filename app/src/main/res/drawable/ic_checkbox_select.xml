@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_checkbox"/>
+    <item android:drawable="@drawable/ic_checkbox_s"
+        android:top="@dimen/x5"
+        android:bottom="@dimen/x5"
+        android:left="@dimen/x3"
+        android:right="@dimen/x3"/>
+</layer-list>

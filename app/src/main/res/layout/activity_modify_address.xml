@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/common_toolbar"/>
+    <RelativeLayout
+        android:id="@+id/location_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y70">
+        <ImageView
+            android:id="@+id/location_iv"
+            android:src="@drawable/ic_address_info"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x29"
+            android:layout_width="@dimen/x23"
+            android:layout_height="@dimen/y36" />
+        <TextView
+            android:id="@+id/location_tv"
+            android:text="@string/address"
+            android:textColor="@color/black"
+            android:textSize="@dimen/y22"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/location_iv"
+            android:layout_marginLeft="@dimen/x16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/location_et"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:layout_toRightOf="@id/location_tv"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginRight="@dimen/x35"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/phone_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y65">
+        <ImageView
+            android:id="@+id/phone_iv"
+            android:src="@drawable/ic_address_phone"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x29"
+            android:layout_width="@dimen/x22"
+            android:layout_height="@dimen/y40" />
+        <TextView
+            android:id="@+id/phone_tv"
+            android:text="@string/phone"
+            android:textColor="@color/black"
+            android:textSize="@dimen/y22"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/phone_iv"
+            android:layout_marginLeft="@dimen/x16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/phone_et"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:maxLength="11"
+            android:layout_toRightOf="@id/phone_tv"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginRight="@dimen/x35"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/sex_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y65">
+        <ImageView
+            android:id="@+id/sex_iv"
+            android:src="@drawable/ic_sex"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x28"
+            android:layout_width="@dimen/x26"
+            android:layout_height="@dimen/y34" />
+        <TextView
+            android:id="@+id/sex_tv"
+            android:text="@string/sex"
+            android:textColor="@color/black"
+            android:textSize="@dimen/y22"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/sex_iv"
+            android:layout_marginLeft="@dimen/x16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/boy_tv"
+            android:text="@string/boy"
+            android:textColor="@color/black"
+            android:textSize="@dimen/y23"
+            android:layout_toRightOf="@id/sex_tv"
+            android:layout_marginLeft="@dimen/x34"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/boy_iv"
+            android:src="@drawable/ic_sex_checkbox_s"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/boy_tv"
+            android:layout_marginLeft="@dimen/x14"
+            android:layout_width="@dimen/x27"
+            android:layout_height="@dimen/y27" />
+        <TextView
+            android:id="@+id/gril_tv"
+            android:text="@string/gril"
+            android:textColor="@color/black"
+            android:textSize="@dimen/y23"
+            android:layout_toRightOf="@id/boy_iv"
+            android:layout_marginLeft="@dimen/x154"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/gril_iv"
+            android:src="@drawable/ic_sex_checkbox"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/gril_tv"
+            android:layout_marginLeft="@dimen/x14"
+            android:layout_width="@dimen/x27"
+            android:layout_height="@dimen/y27" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/confirm_btn"
+        android:text="@string/confirm"
+        android:textColor="@color/white"
+        android:textSize="@dimen/y25"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y60"
+        android:background="@drawable/btn_orange_bg"
+        android:layout_width="@dimen/x477"
+        android:layout_height="@dimen/y67" />
+</LinearLayout>

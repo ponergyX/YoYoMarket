@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/common_toolbar"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/feedback_info_et"
+            android:gravity="start"
+            android:textSize="@dimen/y24"
+            android:textColor="@color/black1"
+            android:hint="@string/feedback_hint"
+            android:textColorHint="@color/hint_color"
+            android:paddingLeft="@dimen/x37"
+            android:paddingRight="@dimen/x37"
+            android:paddingTop="@dimen/y32"
+            android:paddingBottom="@dimen/y32"
+            android:background="@null"
+            android:maxLength="255"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y220" />
+        <ImageView
+            android:background="@color/gray2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y65">
+        <TextView
+            android:id="@+id/contact_way_tv"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x29"
+            android:text="@string/contact_way"
+            android:textColor="@color/black"
+            android:textSize="@dimen/y23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/contact_way_et"
+            android:layout_toRightOf="@id/contact_way_tv"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginRight="@dimen/x50"
+            android:singleLine="true"
+            android:hint="@string/contact_way_hint"
+            android:textColorHint="@color/hint_color"
+            android:textColor="@color/black"
+            android:textSize="@dimen/y23"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:text="@string/submit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/y26"
+        android:layout_gravity="right"
+        android:background="@drawable/btn_orange_bg"
+        android:layout_marginTop="@dimen/y14"
+        android:layout_marginRight="@dimen/y32"
+        android:layout_width="@dimen/x227"
+        android:layout_height="@dimen/y68" />
+</LinearLayout>

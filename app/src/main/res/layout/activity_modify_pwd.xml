@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/common_toolbar"/>
+    <RelativeLayout
+        android:id="@+id/phone_num_rl"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="@dimen/y80"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/x471"
+        android:layout_height="@dimen/y50">
+        <ImageView
+            android:id="@+id/phone_iv"
+            android:src="@drawable/ic_phone_num"
+            android:layout_marginLeft="@dimen/x28"
+            android:layout_width="@dimen/x22"
+            android:layout_height="@dimen/y40" />
+        <Button
+            android:id="@+id/get_code_btn"
+            android:text="@string/get_code"
+            android:textColor="@color/white"
+            android:textSize="@dimen/y17"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_orange_bg"
+            android:layout_width="@dimen/x115"
+            android:layout_height="@dimen/y37" />
+        <EditText
+            android:id="@+id/phone_et"
+            android:hint="@string/phone_hint"
+            android:textSize="@dimen/x23"
+            android:textColor="@color/black1"
+            android:textColorHint="@color/hint_color"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:layout_toRightOf="@id/phone_iv"
+            android:layout_toLeftOf="@id/get_code_btn"
+            android:layout_marginLeft="@dimen/x41"
+            android:paddingBottom="@dimen/y7"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/code_rl"
+        android:layout_marginTop="@dimen/y42"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/phone_num_rl"
+        android:layout_width="@dimen/x471"
+        android:layout_height="@dimen/y45">
+        <ImageView
+            android:id="@+id/code_iv"
+            android:src="@drawable/ic_code"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginTop="@dimen/y10"
+            android:layout_width="@dimen/x33"
+            android:layout_height="@dimen/y27" />
+        <EditText
+            android:id="@+id/code_et"
+            android:hint="@string/code_hint"
+            android:textSize="@dimen/y23"
+            android:textColor="@color/black1"
+            android:textColorHint="@color/hint_color"
+            android:inputType="number"
+            android:maxLength="6"
+            android:layout_toRightOf="@id/code_iv"
+            android:layout_marginLeft="@dimen/x35"
+            android:paddingBottom="@dimen/y7"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/pwd_rl"
+        android:layout_below="@id/code_rl"
+        android:layout_marginTop="@dimen/y37"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/x471"
+        android:layout_height="@dimen/y45">
+        <ImageView
+            android:id="@+id/pwd_iv"
+            android:src="@drawable/ic_locker"
+            android:layout_marginLeft="@dimen/x28"
+            android:layout_marginTop="@dimen/y4"
+            android:layout_width="@dimen/x24"
+            android:layout_height="@dimen/y33" />
+        <EditText
+            android:id="@+id/pwd_et"
+            android:hint="@string/enter_new_pwd_hint"
+            android:textSize="@dimen/y23"
+            android:textColor="@color/black1"
+            android:textColorHint="@color/hint_color"
+            android:maxLength="20"
+            android:inputType="textPassword"
+            android:layout_toRightOf="@id/pwd_iv"
+            android:layout_marginLeft="@dimen/x41"
+            android:paddingBottom="@dimen/y7"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/pwd_confirm_rl"
+        android:layout_below="@id/pwd_rl"
+        android:layout_marginTop="@dimen/y37"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/x471"
+        android:layout_height="@dimen/y45">
+        <ImageView
+            android:id="@+id/pwd_confirm_iv"
+            android:src="@drawable/ic_locker"
+            android:layout_marginLeft="@dimen/x28"
+            android:layout_marginTop="@dimen/y4"
+            android:layout_width="@dimen/x24"
+            android:layout_height="@dimen/y33" />
+        <EditText
+            android:id="@+id/pwd_confirm_et"
+            android:hint="@string/confirm_new_pwd_hint"
+            android:textSize="@dimen/y23"
+            android:textColor="@color/black1"
+            android:textColorHint="@color/hint_color"
+            android:maxLength="20"
+            android:inputType="textPassword"
+            android:layout_toRightOf="@id/pwd_confirm_iv"
+            android:layout_marginLeft="@dimen/x41"
+            android:paddingBottom="@dimen/y7"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/app_color"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/confirm_btn"
+        android:text="@string/confirm"
+        android:textColor="@color/white"
+        android:textSize="@dimen/y25"
+        android:layout_below="@id/pwd_confirm_rl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y36"
+        android:background="@drawable/btn_orange_bg"
+        android:layout_width="@dimen/x477"
+        android:layout_height="@dimen/y67" />
+</RelativeLayout>
