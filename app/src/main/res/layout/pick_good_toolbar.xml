@@ -4,10 +4,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="@dimen/y96"
     android:layout_width="match_parent"
-    android:paddingRight="@dimen/x31"
-    android:paddingLeft="@dimen/x31"
     android:background="@color/app_color">
+    <ImageView
+        android:id="@+id/back_home"
+        android:src="@drawable/back_arrow"
+        android:padding="@dimen/x28"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_width="@dimen/x70"
+        android:layout_height="match_parent" />
     <TextView
+        android:text="ttt"
         android:id="@+id/toolbar_title"
         android:layout_gravity="center"
         android:textSize="@dimen/y36"
@@ -19,6 +25,7 @@
         android:src="@drawable/ic_shop"
         android:visibility="gone"
         android:layout_gravity="right"
+        android:layout_marginRight="@dimen/x31"
         android:layout_width="@dimen/x45"
         android:layout_height="@dimen/y41"/>
 </android.support.v7.widget.Toolbar>

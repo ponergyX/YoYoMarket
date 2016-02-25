@@ -18,11 +18,6 @@ public class ShopInfoActivityPresenter implements Presenter{
     }
 
     @Override
-    public void initInjector() {
-
-    }
-
-    @Override
     public void onStart() {
 
     }

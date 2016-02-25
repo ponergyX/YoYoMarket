@@ -3,10 +3,13 @@ package dreamspace.com.yoyomarket.common;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import dreamspace.com.yoyomarket.api.entity.element.AddressInfo;
+import dreamspace.com.yoyomarket.common.base.BaseActivity;
 import dreamspace.com.yoyomarket.ui.views.activity.AddressActivity;
 import dreamspace.com.yoyomarket.ui.views.activity.AllCommentsActivity;
 import dreamspace.com.yoyomarket.ui.views.activity.FeedbackActivity;
@@ -52,9 +55,9 @@ public class Navigator {
         context.startActivity(intent);
     }
 
-    public void navigateToModifyAddressActivity(@NonNull Context context, int mode){
-        Intent intent = ModifyAddressActivity.getCallingIntent(context,mode);
-        context.startActivity(intent);
+    public void navigateToModifyAddressActivity(@NonNull BaseActivity context, int mode,int requestCode,@Nullable String addressId,@Nullable AddressInfo addressInfo){
+        Intent intent = ModifyAddressActivity.getCallingIntent(context,mode,addressId,addressInfo);
+        context.startActivityForResult(intent,requestCode);
     }
 
     public void navigateToFeedbackActivity(@NonNull Context context){
@@ -62,8 +65,8 @@ public class Navigator {
         context.startActivity(intent);
     }
 
-    public void navigateToPickGoodsActivity(@NonNull Context context){
-        Intent intent = PickGoodsActivity.getCallingIntent(context);
+    public void navigateToPickGoodsActivity(@NonNull Context context,String supId,String supName){
+        Intent intent = PickGoodsActivity.getCallingIntent(context,supId,supName);
         context.startActivity(intent);
     }
 

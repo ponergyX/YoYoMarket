@@ -6,4 +6,12 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
+    <style name="actionbar_style" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:height">@dimen/y96</item>
+        <item name="android:paddingLeft">0dp</item>
+    </style>
+
+    <style name="splash_style" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+    </style>
 </resources>

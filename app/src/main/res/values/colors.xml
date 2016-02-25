@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="app_color">#F99C35</color>
+    <color name="orange1">#F9B635</color>
     <color name="transparent">#00000000</color>
     <color name="tab_bg_color">#FCFCFC</color>
     <color name="divider_color">#BFBFBF</color>
@@ -19,5 +20,7 @@
     <color name="gray7">#5A5A5A</color>
     <color name="gray8">#F2F2F2</color>
     <color name="gray9">#6F6F6F</color>
+    <color name="gray10">#7D7D7D</color>
+    <color name="shadow">#66333333</color>
     <color name="hint_color">#9F9F9F</color>
 </resources>

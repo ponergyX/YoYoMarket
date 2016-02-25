@@ -4,13 +4,13 @@ package dreamspace.com.yoyomarket.api.entity.element;
  * Created by Lx on 2016/1/28.
  */
 public class CommonStatusRes {
-    private String state;
+    private String status;
 
-    public String getState() {
-        return state;
+    public String getStatus() {
+        return status;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

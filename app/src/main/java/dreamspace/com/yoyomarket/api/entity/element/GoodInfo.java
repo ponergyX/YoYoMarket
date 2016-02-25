@@ -7,8 +7,8 @@ public class GoodInfo {
     private String goods_id;
     private String image;
     private String name;
-    private String sales_number;
-    private double price;
+    private int sales_number;
+    private int price;
 
     public String getGoods_id() {
         return goods_id;
@@ -34,19 +34,30 @@ public class GoodInfo {
         this.name = name;
     }
 
-    public String getSales_number() {
+    public int getSales_number() {
         return sales_number;
     }
 
-    public void setSales_number(String sales_number) {
+    public void setSales_number(int sales_number) {
         this.sales_number = sales_number;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof GoodInfo){
+            GoodInfo goodInfo = (GoodInfo) o;
+            if(goodInfo.getGoods_id().equals(getGoods_id())){
+                return true;
+            }
+        }
+        return false;
     }
 }

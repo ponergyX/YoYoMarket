@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_type">com.dreamspace.yoyomarket.account_type</string>
+    <string name="token_type">com.dreamspace.yoyomarket.token_type</string>
+</resources>

@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import dreamspace.com.yoyomarket.R;
@@ -18,6 +20,7 @@ public class CatalogItemAdapter extends RecyclerView.Adapter<CatalogItemAdapter.
     private Context mContext;
     private int selectPosition = 0;
     private CatalogOnClickListener catalogOnClickListener;
+    private ArrayList<String> data;
 
     public CatalogItemAdapter(Context context){
         mContext = context;
@@ -29,6 +32,11 @@ public class CatalogItemAdapter extends RecyclerView.Adapter<CatalogItemAdapter.
         return new ViewHolder(view);
     }
 
+    public void setData(ArrayList<String> data){
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.onBindView(position);
@@ -36,11 +44,12 @@ public class CatalogItemAdapter extends RecyclerView.Adapter<CatalogItemAdapter.
 
     @Override
     public int getItemCount() {
-        return 6;
+        return data == null? 0 : data.size();
     }
 
     public void setSelect(int position){
         selectPosition = position;
+        notifyDataSetChanged();
     }
 
     public void setCatalogOnClickListener(CatalogOnClickListener catalogOnClickListener) {
@@ -71,15 +80,17 @@ public class CatalogItemAdapter extends RecyclerView.Adapter<CatalogItemAdapter.
                 public void onClick(View v) {
                     setSelect(postion);
                     if(catalogOnClickListener != null){
-                        catalogOnClickListener.onClick();
+                        catalogOnClickListener.onClick(postion);
                     }
                     notifyDataSetChanged();
                 }
             });
+
+            catalogTv.setText(data.get(postion));
         }
     }
 
     public interface CatalogOnClickListener{
-        void onClick();
+        void onClick(int catalogPosition);
     }
 }

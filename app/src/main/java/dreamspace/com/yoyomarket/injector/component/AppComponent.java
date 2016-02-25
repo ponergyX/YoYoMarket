@@ -3,8 +3,6 @@ package dreamspace.com.yoyomarket.injector.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import dagger.Module;
-import dreamspace.com.yoyomarket.common.App;
 import dreamspace.com.yoyomarket.common.Navigator;
 import dreamspace.com.yoyomarket.injector.module.AppModule;
 

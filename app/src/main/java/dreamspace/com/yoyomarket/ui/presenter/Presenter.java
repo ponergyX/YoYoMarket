@@ -8,8 +8,6 @@ import dreamspace.com.yoyomarket.ui.view.View;
  * Created by Lx on 2016/1/27.
  */
 public interface Presenter {
-    void initInjector();
-
     void onStart();
 
     void onCreate();

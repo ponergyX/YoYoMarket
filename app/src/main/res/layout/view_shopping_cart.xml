@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/cart_ll"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="@color/gray2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y72">
+            <LinearLayout
+                android:id="@+id/clean_cart_ll"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginRight="@dimen/x34"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/ic_good_clean"
+                    android:layout_width="@dimen/x20"
+                    android:layout_height="@dimen/y23" />
+                <TextView
+                    android:text="@string/clean_cart"
+                    android:textSize="@dimen/y20"
+                    android:textColor="@color/gray10"
+                    android:layout_marginLeft="@dimen/x9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <ImageView
+                android:background="@color/gray2"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y2" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cart_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/cart_rl"
+        android:background="@color/shadow"
+        android:layout_above="@id/cart_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>

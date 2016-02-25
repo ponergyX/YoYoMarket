@@ -2,10 +2,13 @@ package dreamspace.com.yoyomarket.common.base;
 
 import android.support.annotation.Nullable;
 
+import com.orhanobut.logger.Logger;
+
 import dreamspace.com.yoyomarket.BuildConfig;
 import dreamspace.com.yoyomarket.api.RequestIntercepterImpl;
 import dreamspace.com.yoyomarket.common.provider.TokenProvider;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
 import retrofit2.RxJavaCallAdapterFactory;
@@ -36,8 +39,12 @@ public abstract class BaseModel<T>{
     public void setTokenProvider(TokenProvider tokenProvider){
         this.tokenProvider = tokenProvider;
         requestIntercepter.setTokenProvider(tokenProvider);
-        OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.networkInterceptors().add(requestIntercepter);
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(requestIntercepter)
+                .addInterceptor(loggingInterceptor)
+                .build();
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

@@ -5,6 +5,13 @@
     android:layout_height="@dimen/y96"
     android:layout_width="match_parent"
     android:background="@color/app_color">
+    <ImageView
+        android:id="@+id/back_home"
+        android:src="@drawable/back_arrow"
+        android:padding="@dimen/x28"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_width="@dimen/x70"
+        android:layout_height="match_parent" />
     <TextView
         android:id="@+id/toolbar_title"
         android:layout_gravity="center"

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y97">
+    <ImageView
+        android:background="@color/gray2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2" />
+    <TextView
+        android:id="@+id/go_pay_btn"
+        android:text="@string/go_pay"
+        android:textColor="@color/white"
+        android:textSize="@dimen/y26"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x32"
+        android:background="@drawable/btn_orange_bg"
+        android:layout_width="@dimen/x227"
+        android:layout_height="@dimen/y68" />
+    <TextView
+        android:id="@+id/money_tv"
+        android:text="￥10.5"
+        android:textColor="@color/app_color"
+        android:textSize="@dimen/y28"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/go_pay_btn"
+        android:layout_marginRight="@dimen/x30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

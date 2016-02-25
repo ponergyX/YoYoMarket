@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y78">
+    <TextView
+        android:id="@+id/good_name_tv"
+        android:text="苹果"
+        android:textColor="@color/black"
+        android:textSize="@dimen/y24"
+        android:layout_marginLeft="@dimen/x32"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/add_reduce_ll"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/reduce_iv"
+            android:src="@drawable/ic_good_reduce"
+            android:padding="@dimen/x10"
+            android:layout_width="@dimen/x50"
+            android:layout_height="@dimen/x50" />
+        <TextView
+            android:id="@+id/num_tv"
+            android:text="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/y24"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:layout_width="@dimen/x50"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/add_iv"
+            android:src="@drawable/ic_add"
+            android:padding="@dimen/x10"
+            android:layout_width="@dimen/x50"
+            android:layout_height="@dimen/x50" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/price_tv"
+        android:text="￥5.8"
+        android:textSize="@dimen/y24"
+        android:textColor="@color/app_color"
+        android:textStyle="bold"
+        android:layout_toLeftOf="@id/add_reduce_ll"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/x18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

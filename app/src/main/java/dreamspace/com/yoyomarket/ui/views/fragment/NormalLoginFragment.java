@@ -1,5 +1,6 @@
 package dreamspace.com.yoyomarket.ui.views.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,8 +10,10 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import dreamspace.com.yoyomarket.R;
 import dreamspace.com.yoyomarket.common.base.BaseLazyFragment;
+import dreamspace.com.yoyomarket.common.untils.ToastUntil;
 import dreamspace.com.yoyomarket.ui.presenter.fragment.NormalLoginFragmentPresenter;
 import dreamspace.com.yoyomarket.ui.view.fragment.NormalLoginView;
 import dreamspace.com.yoyomarket.ui.views.activity.ModifyPwdActivity;
@@ -38,11 +41,19 @@ public class NormalLoginFragment extends BaseLazyFragment implements NormalLogin
     @Inject
     NormalLoginFragmentPresenter normalLoginFragmentPresenter;
 
+    private SweetAlertDialog sweetAlertDialog;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initInjector();
         initPresenter();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        normalLoginFragmentPresenter.onDestory();
     }
 
     private void initInjector(){
@@ -51,6 +62,7 @@ public class NormalLoginFragment extends BaseLazyFragment implements NormalLogin
 
     private void initPresenter(){
         normalLoginFragmentPresenter.attchView(this);
+        normalLoginFragmentPresenter.onCreate();
     }
 
     @Override
@@ -65,7 +77,11 @@ public class NormalLoginFragment extends BaseLazyFragment implements NormalLogin
 
     @OnClick(R.id.login_btn)
     void login(){
-        navigator.navigateToMainActivity(getActivity());
+        if(phoneEt.getText().length() < 11 || pwdEt.getText().length() < 1){
+            showToast(getString(R.string.login_enter_remind));
+        }else{
+            normalLoginFragmentPresenter.login(phoneEt.getText().toString(),pwdEt.getText().toString());
+        }
     }
 
     @OnClick(R.id.find_pwd_tv)
@@ -81,5 +97,62 @@ public class NormalLoginFragment extends BaseLazyFragment implements NormalLogin
     @Override
     protected int getLayoutResId() {
         return R.layout.fragment_normal_login;
+    }
+
+    @Override
+    public void showNetCantUse() {
+        ToastUntil.showNetCantUse(getActivity());
+    }
+
+    @Override
+    public void showToast(String s) {
+        ToastUntil.showToast(s, getActivity());
+    }
+
+    @Override
+    public void showNetError() {
+        ToastUntil.showNetError(getActivity());
+    }
+
+    @Override
+    public void showLoginProcessDialog() {
+        sweetAlertDialog = new SweetAlertDialog(getActivity(),SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#F99C35"));
+        sweetAlertDialog.setContentText(getString(R.string.in_login));
+        sweetAlertDialog.setTitleText("");
+        sweetAlertDialog.setCancelable(false);
+        sweetAlertDialog.show();
+    }
+
+    @Override
+    public void hideLoginProcessDialog() {
+        if(sweetAlertDialog != null){
+            sweetAlertDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void loginError(String s) {
+        if(sweetAlertDialog != null){
+            sweetAlertDialog.setContentText(s);
+            sweetAlertDialog.setTitleText("");
+            sweetAlertDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+        }
+    }
+
+    @Override
+    public void loginSuccess() {
+        if(sweetAlertDialog != null){
+            sweetAlertDialog.setContentText(getString(R.string.login_success));
+            sweetAlertDialog.setTitleText("");
+            sweetAlertDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+            sweetAlertDialog.dismiss();
+            navigator.navigateToMainActivity(getActivity());
+        }
+    }
+
+    @Override
+    public void setTextInPhoneEt(String s) {
+        phoneEt.setText(s);
     }
 }

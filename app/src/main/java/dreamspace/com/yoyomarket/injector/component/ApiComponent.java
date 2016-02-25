@@ -11,9 +11,12 @@ import dreamspace.com.yoyomarket.ui.views.activity.FeedbackActivity;
 import dreamspace.com.yoyomarket.ui.views.activity.MainActivity;
 import dreamspace.com.yoyomarket.ui.views.activity.ModifyAddressActivity;
 import dreamspace.com.yoyomarket.ui.views.activity.ModifyPwdActivity;
+import dreamspace.com.yoyomarket.ui.views.activity.PayOrderActivity;
 import dreamspace.com.yoyomarket.ui.views.activity.PickGoodsActivity;
 import dreamspace.com.yoyomarket.ui.views.activity.RegisterActivity;
+import dreamspace.com.yoyomarket.ui.views.activity.SearchGoodActivity;
 import dreamspace.com.yoyomarket.ui.views.activity.ShopInfoActivity;
+import dreamspace.com.yoyomarket.ui.views.activity.SplashActivity;
 import dreamspace.com.yoyomarket.ui.views.fragment.MarketsFragment;
 import dreamspace.com.yoyomarket.ui.views.fragment.MineFragment;
 import dreamspace.com.yoyomarket.ui.views.fragment.NormalLoginFragment;
@@ -53,4 +56,10 @@ public interface ApiComponent {
     void inject(ShopInfoActivity shopInfoActivity);
 
     void inject(AllCommentsActivity allCommentsActivity);
+
+    void inject(SplashActivity splashActivity);
+
+    void inject(SearchGoodActivity searchGoodActivity);
+
+    void inject(PayOrderActivity payOrderActivity);
 }

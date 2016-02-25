@@ -8,11 +8,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.otto.Produce;
+import com.squareup.otto.Subscribe;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import dreamspace.com.yoyomarket.R;
+import dreamspace.com.yoyomarket.api.entity.element.GoodInfo;
+import dreamspace.com.yoyomarket.common.event.GoodsListGoodAddEvent;
+import dreamspace.com.yoyomarket.common.event.ShopingCartGoodAddEvent;
+import dreamspace.com.yoyomarket.common.provider.BusProvider;
+import dreamspace.com.yoyomarket.common.untils.CommonUntil;
 
 /**
  * Created by Lx on 2016/2/4.
@@ -24,19 +34,61 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private Context mContext;
     private OnGoodAddClickListener onGoodAddClickListener;
-    private OnGoodReduceClickListener onGoodReduceClickListener;
-    private HashMap<Integer,Integer> goodMap = new HashMap<>();
+    private OnMoneyChangeListener onMoneyChangeListener;
+    private HashMap<String,ArrayList<GoodInfo>> data;
+    private HashMap<GoodInfo,Integer> pickGoodMap = new HashMap<>();
+    private int totalGoods = 0;
+    private ArrayList catalogTitlePosition = new ArrayList();
+    private ArrayList<Object> dataList = new ArrayList();
+    private ArrayList<GoodInfo> rankList = new ArrayList<>();
+    private int totalMoney = 0;
 
     public GoodItemAdapter(Context context){
         mContext = context;
+        BusProvider.getInstance().register(this);
+    }
+
+    public void setData(HashMap<String,ArrayList<GoodInfo>> data){
+        this.data = data;
+        getCatalogTitlePosition();
+        notifyDataSetChanged();
+    }
+
+    private void getCatalogTitlePosition(){
+        rankList.addAll(data.get(mContext.getString(R.string.sale_count_rank)));
+        Iterator<String> iterator = data.keySet().iterator();
+        catalogTitlePosition.add(totalGoods);
+        totalGoods += (data.get(mContext.getString(R.string.sale_count_rank)).size() + 1);
+        dataList.add(mContext.getString(R.string.sale_count_rank));
+        dataList.addAll(data.get(mContext.getString(R.string.sale_count_rank)));
+        while (iterator.hasNext()){
+            String key = iterator.next();
+            if(!key.equals(mContext.getString(R.string.sale_count_rank))){
+                catalogTitlePosition.add(totalGoods);
+                totalGoods += (data.get(key).size() + 1);
+                dataList.add(key);
+                dataList.addAll(data.get(key));
+            }
+        }
     }
 
     @Override
     public int getItemViewType(int position) {
-        if(position % 6 == 0){
+        if(catalogTitlePosition.contains(position)){
             return CATALOG_TITLE_TYPE;
         }
         return GOOD_TYPE;
+    }
+
+    public int getCatalogTitlePosition(int position){
+        if(position <= catalogTitlePosition.size()){
+            return (int) catalogTitlePosition.get(position);
+        }
+        return 0;
+    }
+
+    public ArrayList getCatalogTitlePositionList(){
+        return catalogTitlePosition;
     }
 
     @Override
@@ -61,15 +113,25 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return 35;
+        return totalGoods;
     }
 
     public void setOnGoodAddClickListener(OnGoodAddClickListener onGoodAddClickListener) {
         this.onGoodAddClickListener = onGoodAddClickListener;
     }
 
-    public void setOnGoodReduceClickListener(OnGoodReduceClickListener onGoodReduceClickListener) {
-        this.onGoodReduceClickListener = onGoodReduceClickListener;
+    public void setOnMoneyChangeListener(OnMoneyChangeListener onMoneyChangeListener) {
+        this.onMoneyChangeListener = onMoneyChangeListener;
+    }
+
+    private int checkInRankList(GoodInfo goodInfo){
+        for(GoodInfo rankGoodInfo:rankList) {
+            if (rankGoodInfo.equals(goodInfo)) {
+                return rankList.indexOf(rankGoodInfo);
+            }
+        }
+
+        return -1;//不在销量排行中
     }
 
     public class ViewHolderTitle extends RecyclerView.ViewHolder{
@@ -83,7 +145,7 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void onBindView(int position){
-
+            catalogTitleTv.setText((String)dataList.get(position));
         }
     }
 
@@ -114,12 +176,23 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         public ViewHolderGood(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         public void onBindView(final int position){
-            if (goodMap.containsKey(position)){
-                count = goodMap.get(position);
+            GoodInfo info = (GoodInfo) dataList.get(position);
+            int index = checkInRankList(info);
+            final GoodInfo goodInfo;
+
+            //解决销量排行中商品与其他类目中商品虽然是统一个商品但是是不同java对象问题
+            if(index > -1){
+                goodInfo = rankList.get(index);
+            }else{
+                goodInfo = info;
+            }
+
+            if (pickGoodMap.containsKey(goodInfo)){
+                count = pickGoodMap.get(goodInfo);
             }else{
                 count = 0;
             }
@@ -136,21 +209,29 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             addIv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(++count == 1){
+                    if (++count == 1) {
                         reduceIv.setVisibility(View.VISIBLE);
                         buyCountTv.setVisibility(View.VISIBLE);
                     }
 
-                    if(count <= 9){
-                        buyCountTv.setText(count+"");
-                    }else{
+                    if (count <= 99) {
+                        buyCountTv.setText(count + "");
+                        pickGoodMap.put(goodInfo, count);
+                        totalMoney+=goodInfo.getPrice();
+
+                        int[] locations = new int[2];
+                        addIv.getLocationInWindow(locations);
+                        if (onGoodAddClickListener != null) {
+                            onGoodAddClickListener.onAddClick(locations);
+                        }
+
+                        if(onMoneyChangeListener != null){
+                            onMoneyChangeListener.onMoneyChange(totalMoney);
+                        }
+
+                        BusProvider.getInstance().post(new GoodsListGoodAddEvent(pickGoodMap));
+                    } else {
                         count--;
-                    }
-
-                    goodMap.put(position,count);
-
-                    if(onGoodAddClickListener != null){
-                        onGoodAddClickListener.onAddClick();
                     }
                 }
             });
@@ -158,32 +239,59 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             reduceIv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(--count == 0){
+                    if (count < 0) {
+                        count = 0;
+                        return;
+                    }
+
+                    if (--count == 0) {
                         reduceIv.setVisibility(View.INVISIBLE);
                         buyCountTv.setVisibility(View.INVISIBLE);
-                    }
-
-                    if(count < 0){
-                        count = 0;
-                    }else{
+                        pickGoodMap.remove(goodInfo);
+                    } else {
                         buyCountTv.setText(count + "");
+                        pickGoodMap.put(goodInfo, count);
+                    }
+                    totalMoney-=goodInfo.getPrice();
+
+                    if(onMoneyChangeListener != null){
+                        onMoneyChangeListener.onMoneyChange(totalMoney);
                     }
 
-                    goodMap.put(position,count);
-
-                    if(onGoodReduceClickListener != null){
-                        onGoodReduceClickListener.onReduceClick();
-                    }
+                    BusProvider.getInstance().post(new GoodsListGoodAddEvent(pickGoodMap));
                 }
             });
+
+            CommonUntil.showImageInIv(mContext,goodInfo.getImage(),goodImageIv);
+            goodNameTv.setText(goodInfo.getName());
+            saleCountTv.setText("月售" + goodInfo.getSales_number());
+            priceTv.setText("￥" + ((double) goodInfo.getPrice()) / 100 + "元/份");
         }
     }
 
     public interface OnGoodAddClickListener{
-        void onAddClick();
+        void onAddClick(int[] locations);
     }
 
-    public interface OnGoodReduceClickListener{
-        void onReduceClick();
+    public interface OnMoneyChangeListener{
+        void onMoneyChange(int money);
+    }
+
+    @Subscribe public void changePickGoods(ShopingCartGoodAddEvent event){
+        pickGoodMap = event.getPickGoods();
+        Iterator<GoodInfo> iterator = pickGoodMap.keySet().iterator();
+        totalMoney = 0;
+        while (iterator.hasNext()){
+            GoodInfo goodInfo = iterator.next();
+            totalMoney += goodInfo.getPrice() * pickGoodMap.get(goodInfo);
+        }
+        if(onMoneyChangeListener != null){
+            onMoneyChangeListener.onMoneyChange(totalMoney);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void unRegisterBus(){
+        BusProvider.getInstance().unregister(this);
     }
 }

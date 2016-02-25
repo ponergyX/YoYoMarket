@@ -52,6 +52,12 @@ public class OrdersFragment extends BaseLazyFragment implements OrdersView{
         initPresenter();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ordersFragmentPresenter.onDestory();
+    }
+
     private void initInjector(){
         getApiComponent().inject(this);
     }

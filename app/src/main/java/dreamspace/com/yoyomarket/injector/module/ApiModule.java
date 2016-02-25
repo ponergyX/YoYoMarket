@@ -5,6 +5,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import dreamspace.com.yoyomarket.common.provider.GuestTokenProvider;
+import dreamspace.com.yoyomarket.common.provider.UserTokenProvider;
+import dreamspace.com.yoyomarket.common.untils.PreferenceUntil;
 import dreamspace.com.yoyomarket.model.GoodsModel;
 import dreamspace.com.yoyomarket.model.MarketModel;
 import dreamspace.com.yoyomarket.model.OrderModel;

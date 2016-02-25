@@ -8,13 +8,13 @@ import dreamspace.com.yoyomarket.api.entity.element.MarketCatalog;
  * Created by Lx on 2016/1/30.
  */
 public class MarketCatalogs {
-    private ArrayList<MarketCatalog> group;
+    private ArrayList<String> catalog;
 
-    public ArrayList<MarketCatalog> getGroup() {
-        return group;
+    public ArrayList<String> getCatalog() {
+        return catalog;
     }
 
-    public void setGroup(ArrayList<MarketCatalog> group) {
-        this.group = group;
+    public void setCatalog(ArrayList<String> catalog) {
+        this.catalog = catalog;
     }
 }

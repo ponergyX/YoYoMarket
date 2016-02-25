@@ -6,6 +6,6 @@ package dreamspace.com.yoyomarket.common.provider;
 public class GuestTokenProvider implements TokenProvider{
     @Override
     public String getToken() {
-        return null;
+        return "guest";
     }
 }

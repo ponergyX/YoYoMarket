@@ -6,12 +6,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dreamspace.com.yoyomarket.R;
 import dreamspace.com.yoyomarket.common.App;
 import dreamspace.com.yoyomarket.common.Navigator;
@@ -31,12 +34,18 @@ public abstract class BaseActivity extends AppCompatActivity{
     @Bind(R.id.toolbar_title)
     TextView toolbarTitleTv;
 
+    @Nullable
+    @Bind(R.id.back_home)
+    ImageView backhome;
+
     public Navigator navigator;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutResId());
+        if(getLayoutResId() != 0){
+            setContentView(getLayoutResId());
+        }
         ButterKnife.bind(this);
         navigator = ((App)getApplication()).getAppComponent().navigator();
         initToolBar();
@@ -48,10 +57,15 @@ public abstract class BaseActivity extends AppCompatActivity{
             return;
         }
         toolbarView.setBackgroundColor(getResources().getColor(R.color.app_color));
+        toolbarView.setContentInsetsAbsolute(0, 0);
         setSupportActionBar(toolbarView);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back_arrow);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        backhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     protected void setTitle(String title){
@@ -65,16 +79,12 @@ public abstract class BaseActivity extends AppCompatActivity{
         if(toolbarView == null){
             return;
         }
-        getSupportActionBar().setDisplayHomeAsUpEnabled(displayBack);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id == android.R.id.home){
-            finish();
+        if(displayBack){
+            backhome.setVisibility(View.VISIBLE);
+        }else{
+            backhome.setVisibility(View.GONE);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

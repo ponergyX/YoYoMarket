@@ -70,6 +70,12 @@ public class ShopInfoActivity extends BaseActivity implements ShopInfoView{
         initPresenter();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        shopInfoActivityPresenter.onDestory();
+    }
+
     private void initInjector(){
         getApiComponent().inject(this);
     }

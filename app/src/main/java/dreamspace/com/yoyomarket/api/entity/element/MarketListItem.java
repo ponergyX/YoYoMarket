@@ -7,8 +7,10 @@ public class MarketListItem {
     private String sup_id;
     private String name;
     private String image;
-    private String sales_number;
-    private double score;
+    private int sales_number;
+    private int score;
+    private int deliver_fee;
+    private int send_price;
 
     public String getSup_id() {
         return sup_id;
@@ -34,19 +36,35 @@ public class MarketListItem {
         this.image = image;
     }
 
-    public String getSales_number() {
+    public int getSales_number() {
         return sales_number;
     }
 
-    public void setSales_number(String sales_number) {
+    public void setSales_number(int sales_number) {
         this.sales_number = sales_number;
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(int score) {
         this.score = score;
+    }
+
+    public int getDeliver_fee() {
+        return deliver_fee;
+    }
+
+    public void setDeliver_fee(int deliver_fee) {
+        this.deliver_fee = deliver_fee;
+    }
+
+    public int getSend_price() {
+        return send_price;
+    }
+
+    public void setSend_price(int send_price) {
+        this.send_price = send_price;
     }
 }

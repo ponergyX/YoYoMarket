@@ -2,8 +2,10 @@ package dreamspace.com.yoyomarket.ui.views.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -15,8 +17,10 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import dreamspace.com.yoyomarket.R;
 import dreamspace.com.yoyomarket.common.base.BaseActivity;
+import dreamspace.com.yoyomarket.common.untils.ToastUntil;
 import dreamspace.com.yoyomarket.ui.presenter.activity.ModifyPwdActivityPresenter;
 import dreamspace.com.yoyomarket.ui.view.activity.ModifyPwdView;
 
@@ -51,6 +55,7 @@ public class ModifyPwdActivity extends BaseActivity implements ModifyPwdView{
     ModifyPwdActivityPresenter modifyPwdActivityPresenter;
 
     private TimeCounter timeCounter;
+    private SweetAlertDialog sweetAlertDialog;
 
     public static Intent getCallingIntent(Context context,int mode){
         Intent intent = new Intent(context,ModifyPwdActivity.class);
@@ -71,6 +76,7 @@ public class ModifyPwdActivity extends BaseActivity implements ModifyPwdView{
 
     private void initPresenter(){
         modifyPwdActivityPresenter.attchView(this);
+        modifyPwdActivityPresenter.onCreate();
     }
 
     @Override
@@ -112,13 +118,26 @@ public class ModifyPwdActivity extends BaseActivity implements ModifyPwdView{
     void getCode(){
         getCodeBtn.setEnabled(false);
         getCodeBtn.setBackgroundResource(R.drawable.btn_gray_bg);
-        timeCounter = new TimeCounter(6000,1000);
+        timeCounter = new TimeCounter(60000,1000);
         timeCounter.start();
+        modifyPwdActivityPresenter.getCode(phoneEt.getText().toString(),1);
     }
 
     @OnClick(R.id.confirm_btn)
     void modifyPwd(){
+        if(phoneEt.getText().toString().length() < 11 || codeEt.getText().toString().length() < 1 ||
+                pwdEt.getText().toString().length() < 1 || pwdConfirmEt.getText().length() < 1){
+            showToast(getString(R.string.modify_pwd_enter_remind));
+            return;
+        }
 
+        if(!pwdEt.getText().toString().equals(pwdConfirmEt.getText().toString())){
+            showToast(getString(R.string.two_pwd_different1));
+            return;
+        }
+
+        modifyPwdActivityPresenter.modifyPassword(phoneEt.getText().toString(),codeEt.getText().toString()
+                ,pwdEt.getText().toString());
     }
 
     @Override
@@ -127,11 +146,62 @@ public class ModifyPwdActivity extends BaseActivity implements ModifyPwdView{
         if(timeCounter != null){
             timeCounter.cancel();
         }
+        modifyPwdActivityPresenter.onDestory();
     }
 
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_modify_pwd;
+    }
+
+    @Override
+    public void showNetCantUse() {
+        ToastUntil.showNetCantUse(this);
+    }
+
+    @Override
+    public void showNetError() {
+        ToastUntil.showNetError(this);
+    }
+
+    @Override
+    public void showToast(@NonNull String s) {
+        ToastUntil.showToast(s,this);
+    }
+
+    @Override
+    public void showProcessDialog() {
+        sweetAlertDialog = new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
+        sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#F99C35"));
+        sweetAlertDialog.setContentText(getString(R.string.in_modify));
+        sweetAlertDialog.setTitleText("");
+        sweetAlertDialog.setCancelable(false);
+        sweetAlertDialog.show();
+    }
+
+    @Override
+    public void showModifyError(String s) {
+        if(sweetAlertDialog != null){
+            sweetAlertDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+            sweetAlertDialog.setTitleText("");
+            sweetAlertDialog.setContentText(s);
+        }
+    }
+
+    @Override
+    public void showModifySuccess() {
+        if(sweetAlertDialog != null){
+            sweetAlertDialog.setContentText(getString(R.string.modify_pwd_success));
+            sweetAlertDialog.setTitleText("");
+            sweetAlertDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+            sweetAlertDialog.dismiss();
+            sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                    ModifyPwdActivity.this.finish();
+                }
+            });
+        }
     }
 
     private class TimeCounter extends CountDownTimer{

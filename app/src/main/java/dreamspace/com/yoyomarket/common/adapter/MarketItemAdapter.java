@@ -10,9 +10,13 @@ import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import dreamspace.com.yoyomarket.R;
+import dreamspace.com.yoyomarket.api.entity.element.MarketListItem;
+import dreamspace.com.yoyomarket.common.untils.CommonUntil;
 import dreamspace.com.yoyomarket.widget.RatingBar;
 
 /**
@@ -21,9 +25,21 @@ import dreamspace.com.yoyomarket.widget.RatingBar;
 public class MarketItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private Context mContext;
     private OnMarketItemClickListener onMarketItemClickListener;
+    private ArrayList<MarketListItem> data;
 
     public MarketItemAdapter(Context context){
         mContext = context;
+        data = new ArrayList<>();
+    }
+
+    public void setData(ArrayList<MarketListItem> data){
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
+    public void addData(ArrayList<MarketListItem> data){
+        this.data.addAll(data);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -51,7 +67,7 @@ public class MarketItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
-        return 10;
+        return data == null ? 1 : data.size() + 1;
     }
 
     public void setOnMarketItemClickListener(OnMarketItemClickListener onMarketItemClickListener) {
@@ -82,18 +98,26 @@ public class MarketItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         public ViewHolderItem(View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            ButterKnife.bind(this,itemView);
         }
 
-        public void onBindView(int position){
+        public void onBindView(final int position){
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (onMarketItemClickListener != null) {
-                        onMarketItemClickListener.onClick();
+                        onMarketItemClickListener.onClick(data.get(position - 1).getSup_id(),data.get(position - 1).getName());
                     }
                 }
             });
+
+            CommonUntil.showImageInIv(mContext, data.get(position - 1).getImage(), marketIv);
+            marketNameTv.setText(data.get(position - 1).getName());
+            monthSaleTv.setText("月售" + data.get(position - 1).getSales_number() + "单");
+            ratingBar.setmClickable(false);
+            ratingBar.setStar(data.get(position - 1).getScore());
+            startPriceTv.setText(data.get(position - 1).getSend_price() + "元起送");
+            takePriceTv.setText(data.get(position - 1).getDeliver_fee() + "元配送费");
         }
     }
 
@@ -112,6 +136,6 @@ public class MarketItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public interface OnMarketItemClickListener{
-        void onClick();
+        void onClick(String supId,String supName);
     }
 }

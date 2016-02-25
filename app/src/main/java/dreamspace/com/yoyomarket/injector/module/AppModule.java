@@ -1,5 +1,6 @@
 package dreamspace.com.yoyomarket.injector.module;
 
+import android.accounts.AccountManager;
 import android.content.Context;
 
 import javax.inject.Singleton;
@@ -7,6 +8,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import dreamspace.com.yoyomarket.common.App;
+import dreamspace.com.yoyomarket.common.untils.PreferenceUntil;
+import dreamspace.com.yoyomarket.common.untils.UploadImageUntil;
 import dreamspace.com.yoyomarket.injector.qualifier.ForApplication;
 
 /**
@@ -25,5 +28,17 @@ public class AppModule {
     @ForApplication
     Context provideAppContext(){
         return app;
+    }
+
+    @Provides
+    @Singleton
+    PreferenceUntil providePreferenceUntil(@ForApplication Context context){
+        return new PreferenceUntil(context);
+    }
+
+    @Provides
+    @Singleton
+    UploadImageUntil provideUploadImageUntil(){
+        return new UploadImageUntil();
     }
 }

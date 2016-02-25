@@ -1,0 +1,34 @@
+package dreamspace.com.yoyomarket.api.entity.element;
+
+/**
+ * Created by Lx on 2016/2/15.
+ */
+public class RegisterRes {
+    private String user_id;
+    private String access_token;
+    private String timelimit;
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
+    public String getTimelimit() {
+        return timelimit;
+    }
+
+    public void setTimelimit(String timelimit) {
+        this.timelimit = timelimit;
+    }
+}

@@ -48,6 +48,12 @@ public class MainActivity extends BaseActivity implements MainView{
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mainActivityPresenter.onDestory();
+    }
+
+    @Override
     protected void initViewsAndEvents() {
 
     }

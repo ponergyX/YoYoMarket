@@ -20,11 +20,6 @@ public class OrdersFragmentPresenter implements Presenter{
     }
 
     @Override
-    public void initInjector() {
-
-    }
-
-    @Override
     public void onStart() {
 
     }
