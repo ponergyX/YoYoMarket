@@ -68,9 +68,7 @@ public class UserModel extends BaseModel<UserApi>{
         return getService().deleteGetGoodsAddress(addressId);
     }
 
-    public Observable<SuggestionRes> suggest(String content,String connectionWay){
-        SuggestionReq suggestionReq = new SuggestionReq();
-        suggestionReq.setContent(content);
+    public Observable<SuggestionRes> suggest(SuggestionReq suggestionReq){
         return getService().suggest(suggestionReq);
     }
 }

@@ -25,7 +25,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kennyc.view.MultiStateView;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,7 +109,10 @@ public class PickGoodsActivity extends BaseActivity implements PickGoodsView{
     private CircleProgress circleProgress;
     private String supName;
     private String supId;
-    private AnimatorSet animatorSet = new AnimatorSet();;
+    private AnimatorSet animatorSet = new AnimatorSet();
+    private int lastPosition = 0;
+
+    private static final int SREACH_GOOD = 1;
 
     public static Intent getCallingIntent(Context context,String supId,String supName){
         Intent intent = new Intent(context,PickGoodsActivity.class);
@@ -155,6 +157,8 @@ public class PickGoodsActivity extends BaseActivity implements PickGoodsView{
         initMutliStateView();
         setTitle(supName);
         priceTv.setText("￥0.0");
+        pickFinishTv.setEnabled(false);
+        pickFinishTv.setBackgroundResource(R.drawable.btn_gray_bg);
         shopIv.setVisibility(View.VISIBLE);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this);
         linearLayoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
@@ -183,6 +187,13 @@ public class PickGoodsActivity extends BaseActivity implements PickGoodsView{
         goodItemAdapter.setOnMoneyChangeListener(new GoodItemAdapter.OnMoneyChangeListener() {
             @Override
             public void onMoneyChange(int money) {
+                if(money > 0){
+                    pickFinishTv.setEnabled(true);
+                    pickFinishTv.setBackgroundResource(R.drawable.btn_orange_bg);
+                }else{
+                    pickFinishTv.setEnabled(false);
+                    pickFinishTv.setBackgroundResource(R.drawable.btn_gray_bg);
+                }
                 priceTv.setText("￥" + (double) money / 100);
             }
         });
@@ -190,6 +201,9 @@ public class PickGoodsActivity extends BaseActivity implements PickGoodsView{
         catalogItemAdapter.setCatalogOnClickListener(new CatalogItemAdapter.CatalogOnClickListener() {
             @Override
             public void onClick(int catalogPosition) {
+                if(goodsRecyclerview.getScrollState() != RecyclerView.SCROLL_STATE_IDLE){
+                    goodsRecyclerview.stopScroll();
+                }
                 linearLayoutManager2.scrollToPositionWithOffset(goodItemAdapter.getCatalogTitlePosition(catalogPosition), 0);
             }
         });
@@ -209,30 +223,47 @@ public class PickGoodsActivity extends BaseActivity implements PickGoodsView{
         });
 
         goodsRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            int lastPosition = 0;
             boolean down = true;
+            boolean scroll = false;
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                ArrayList list = goodItemAdapter.getCatalogTitlePositionList();
-                int firstVisiblePosition = linearLayoutManager2.findFirstVisibleItemPosition();
-                if(dy >= 0){
-                    if(!down){
-                        lastPosition++;
+                if(scroll){
+                    ArrayList list = goodItemAdapter.getCatalogTitlePositionList();
+                    int firstVisiblePosition = linearLayoutManager2.findFirstVisibleItemPosition();
+                    if(dy >= 0){
+                        if(!down){
+                            lastPosition++;
+                        }
+                        down = true;
+                        if(firstVisiblePosition >= (int)list.get(lastPosition)) {
+                            catalogItemAdapter.setSelect(lastPosition);
+                            lastPosition++;
+                        }
+                    }else{
+                        down = false;
+                        if(firstVisiblePosition < (int)list.get(lastPosition)){
+                            catalogItemAdapter.setSelect(--lastPosition);
+                        }
                     }
-                    down = true;
-                    if(firstVisiblePosition >= (int)list.get(lastPosition)) {
-                        catalogItemAdapter.setSelect(lastPosition);
-                        lastPosition++;
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState == RecyclerView.SCROLL_STATE_DRAGGING){
+                    scroll = true;
+                    ArrayList list = goodItemAdapter.getCatalogTitlePositionList();
+                    int firstPosition = linearLayoutManager2.findFirstVisibleItemPosition();
+                    for(int i = 0;i < list.size() - 1;i++){
+                        if(firstPosition >= (int)list.get(i) && firstPosition < (int)list.get(i + 1)){
+                            lastPosition = i;
+                            break;
+                        }
                     }
-                }else{
-                    if(down){
-                        lastPosition--;
-                    }
-                    down = false;
-                    if(firstVisiblePosition < (int)list.get(lastPosition)){
-                        catalogItemAdapter.setSelect(--lastPosition);
-                    }
+                }else if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    scroll = false;
                 }
             }
         });
@@ -276,7 +307,7 @@ public class PickGoodsActivity extends BaseActivity implements PickGoodsView{
         circleIv.setTranslationY(0f);
         circleIv.setLayoutParams(layoutParams);
         circleIv.setVisibility(View.VISIBLE);
-        playAnimationOnCircleIv(margin_top_y,margin_right_x);
+        playAnimationOnCircleIv(margin_top_y, margin_right_x);
     }
 
     private void playAnimationOnCircleIv(int marginY,int marginX){
@@ -323,7 +354,10 @@ public class PickGoodsActivity extends BaseActivity implements PickGoodsView{
 
     @OnClick(R.id.search_good_ll)
     void searchGood(){
-
+        if(cartView != null && cartView.getVisibility() == View.VISIBLE){
+            cartView.setVisibility(View.GONE);
+        }
+        navigator.navigateToSearchGoodActivity(this, SREACH_GOOD, supId, goodItemAdapter.getPickGoods());
     }
 
     @OnClick(R.id.cart_iv)
@@ -343,7 +377,7 @@ public class PickGoodsActivity extends BaseActivity implements PickGoodsView{
 
     @OnClick(R.id.pick_finish_tv)
     void pickFinish(){
-
+        navigator.navigateToPayOrderActivity(this,supId,goodItemAdapter.getPickGoods());
     }
 
     @Override
@@ -363,6 +397,7 @@ public class PickGoodsActivity extends BaseActivity implements PickGoodsView{
         cartRecyclerview.setLayoutManager(linearLayoutManager);
         cartRecyclerview.addItemDecoration(itemDecoration);
         cartRecyclerview.setAdapter(cartAdapter);
+        cartRecyclerview.setHasFixedSize(true);
 
         cartView.setVisibility(View.GONE);
         cartRl.setOnClickListener(new View.OnClickListener() {
@@ -391,6 +426,14 @@ public class PickGoodsActivity extends BaseActivity implements PickGoodsView{
                             * cartAdapter.getItemCount()
                             + getResources().getDimensionPixelSize(R.dimen.x2)
                             * (cartAdapter.getItemCount() - 1)));
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == SREACH_GOOD && resultCode == RESULT_OK){
+            Bundle bundle = data.getExtras();
+            goodItemAdapter.setPickGoods((HashMap<String, GoodInfo>) bundle.getSerializable(SearchGoodActivity.PICK_GOODS));
         }
     }
 
@@ -442,5 +485,13 @@ public class PickGoodsActivity extends BaseActivity implements PickGoodsView{
         }
         catalogItemAdapter.setData(catalogs);
         goodItemAdapter.setData(goods);
+    }
+
+    @Override
+    public void showEmpty() {
+        multiStateView.setViewState(MultiStateView.VIEW_STATE_EMPTY);
+        if(circleProgress != null){
+            circleProgress.stopAnim();
+        }
     }
 }

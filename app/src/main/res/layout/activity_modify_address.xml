@@ -179,6 +179,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/y60"
         android:background="@drawable/btn_orange_bg"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="@dimen/x477"
         android:layout_height="@dimen/y67" />
 </LinearLayout>

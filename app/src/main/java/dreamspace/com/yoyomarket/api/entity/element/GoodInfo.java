@@ -1,14 +1,22 @@
 package dreamspace.com.yoyomarket.api.entity.element;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * Created by Lx on 2016/1/28.
  */
-public class GoodInfo {
+public class GoodInfo implements Serializable{
     private String goods_id;
     private String image;
     private String name;
     private int sales_number;
     private int price;
+
+    //非传递来的数据，用来标记购物车中选定了多少件此商品
+    private int pickNum;
 
     public String getGoods_id() {
         return goods_id;
@@ -59,5 +67,13 @@ public class GoodInfo {
             }
         }
         return false;
+    }
+
+    public int getPickNum() {
+        return pickNum;
+    }
+
+    public void setPickNum(int pickNum) {
+        this.pickNum = pickNum;
     }
 }

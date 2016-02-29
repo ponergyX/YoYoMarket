@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -48,6 +50,7 @@ public class CatalogItemAdapter extends RecyclerView.Adapter<CatalogItemAdapter.
     }
 
     public void setSelect(int position){
+        Logger.d("select:" + position);
         selectPosition = position;
         notifyDataSetChanged();
     }
@@ -78,11 +81,10 @@ public class CatalogItemAdapter extends RecyclerView.Adapter<CatalogItemAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    setSelect(postion);
                     if(catalogOnClickListener != null){
                         catalogOnClickListener.onClick(postion);
                     }
-                    notifyDataSetChanged();
+                    setSelect(postion);
                 }
             });
 

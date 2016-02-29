@@ -7,13 +7,13 @@ import dreamspace.com.yoyomarket.api.entity.element.GoodInfo;
 /**
  * Created by Lx on 2016/2/23.
  */
-public class GoodsListGoodAddEvent {
-    private HashMap<GoodInfo,Integer> pickGoods;
-    public GoodsListGoodAddEvent(HashMap<GoodInfo,Integer> pickGoods){
+public class GoodsListPickGoodsChangeEvent {
+    private HashMap<String,GoodInfo> pickGoods;
+    public GoodsListPickGoodsChangeEvent(HashMap<String, GoodInfo> pickGoods){
         this.pickGoods = pickGoods;
     }
 
-    public HashMap<GoodInfo, Integer> getPickGoods() {
+    public HashMap<String,GoodInfo> getPickGoods() {
         return pickGoods;
     }
 }

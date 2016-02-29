@@ -1,10 +1,13 @@
 package dreamspace.com.yoyomarket.api;
 
+import java.util.ArrayList;
+
 import dreamspace.com.yoyomarket.api.entity.AllComments;
 import dreamspace.com.yoyomarket.api.entity.MarketCatalogs;
 import dreamspace.com.yoyomarket.api.entity.Markets;
 import dreamspace.com.yoyomarket.api.entity.RecentComments;
 import dreamspace.com.yoyomarket.api.entity.element.CommentOrderRes;
+import dreamspace.com.yoyomarket.api.entity.element.DeliverTime;
 import dreamspace.com.yoyomarket.api.entity.element.MarketInfo;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -33,4 +36,7 @@ public interface MarketApi {
 
     @GET("supermarket/{sup_id}/comment/{page}")
     Observable<AllComments> getAllComments(@Path("sup_id")String sup_id,@Path("page")int page);
+
+    @GET("send_time/")
+    Observable<ArrayList<DeliverTime>> getDeliverTimes();
 }

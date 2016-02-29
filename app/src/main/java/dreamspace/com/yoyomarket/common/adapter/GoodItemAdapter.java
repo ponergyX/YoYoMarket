@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
@@ -19,8 +18,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import dreamspace.com.yoyomarket.R;
 import dreamspace.com.yoyomarket.api.entity.element.GoodInfo;
-import dreamspace.com.yoyomarket.common.event.GoodsListGoodAddEvent;
-import dreamspace.com.yoyomarket.common.event.ShopingCartGoodAddEvent;
+import dreamspace.com.yoyomarket.common.event.GoodsListPickGoodsChangeEvent;
+import dreamspace.com.yoyomarket.common.event.ShopingCartPickGoodsChangeEvent;
 import dreamspace.com.yoyomarket.common.provider.BusProvider;
 import dreamspace.com.yoyomarket.common.untils.CommonUntil;
 
@@ -36,7 +35,7 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private OnGoodAddClickListener onGoodAddClickListener;
     private OnMoneyChangeListener onMoneyChangeListener;
     private HashMap<String,ArrayList<GoodInfo>> data;
-    private HashMap<GoodInfo,Integer> pickGoodMap = new HashMap<>();
+    private HashMap<String,GoodInfo> pickGoodMap = new HashMap<>();
     private int totalGoods = 0;
     private ArrayList catalogTitlePosition = new ArrayList();
     private ArrayList<Object> dataList = new ArrayList();
@@ -51,6 +50,13 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void setData(HashMap<String,ArrayList<GoodInfo>> data){
         this.data = data;
         getCatalogTitlePosition();
+        notifyDataSetChanged();
+    }
+
+    public void setPickGoods(HashMap<String,GoodInfo> pickGoods){
+        pickGoodMap = pickGoods;
+        reComputeTotalPrice();
+        BusProvider.getInstance().post(new GoodsListPickGoodsChangeEvent(pickGoods));
         notifyDataSetChanged();
     }
 
@@ -114,6 +120,10 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public int getItemCount() {
         return totalGoods;
+    }
+
+    public HashMap<String,GoodInfo> getPickGoods(){
+        return pickGoodMap;
     }
 
     public void setOnGoodAddClickListener(OnGoodAddClickListener onGoodAddClickListener) {
@@ -180,24 +190,24 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void onBindView(final int position){
-            GoodInfo info = (GoodInfo) dataList.get(position);
-            int index = checkInRankList(info);
-            final GoodInfo goodInfo;
+            final GoodInfo info;
+            GoodInfo goodInfo = (GoodInfo) dataList.get(position);
 
-            //解决销量排行中商品与其他类目中商品虽然是统一个商品但是是不同java对象问题
-            if(index > -1){
-                goodInfo = rankList.get(index);
+            //用来解决good_id相同但不是同一java对象的问题
+            if (pickGoodMap.containsKey(goodInfo.getGoods_id())){
+                info = pickGoodMap.get(goodInfo.getGoods_id());
+                count = info.getPickNum();
             }else{
-                goodInfo = info;
-            }
-
-            if (pickGoodMap.containsKey(goodInfo)){
-                count = pickGoodMap.get(goodInfo);
-            }else{
+                info = goodInfo;
                 count = 0;
             }
 
             buyCountTv.setText(count + "");
+            CommonUntil.showImageInIv(mContext,info.getImage(),goodImageIv);
+            goodNameTv.setText(info.getName());
+            saleCountTv.setText("月售" + info.getSales_number());
+            priceTv.setText("￥" + ((double) info.getPrice()) / 100 + "元/份");
+
             if(count != 0){
                 buyCountTv.setVisibility(View.VISIBLE);
                 reduceIv.setVisibility(View.VISIBLE);
@@ -216,8 +226,9 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                     if (count <= 99) {
                         buyCountTv.setText(count + "");
-                        pickGoodMap.put(goodInfo, count);
-                        totalMoney+=goodInfo.getPrice();
+                        info.setPickNum(count);
+                        pickGoodMap.put(info.getGoods_id(), info);
+                        totalMoney += info.getPrice();
 
                         int[] locations = new int[2];
                         addIv.getLocationInWindow(locations);
@@ -225,13 +236,12 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             onGoodAddClickListener.onAddClick(locations);
                         }
 
-                        if(onMoneyChangeListener != null){
+                        if (onMoneyChangeListener != null) {
                             onMoneyChangeListener.onMoneyChange(totalMoney);
                         }
 
-                        BusProvider.getInstance().post(new GoodsListGoodAddEvent(pickGoodMap));
-                    } else {
-                        count--;
+                        BusProvider.getInstance().post(new GoodsListPickGoodsChangeEvent(pickGoodMap));
+                        notifyDataSetChanged();
                     }
                 }
             });
@@ -239,33 +249,26 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             reduceIv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (count < 0) {
-                        count = 0;
-                        return;
-                    }
-
                     if (--count == 0) {
                         reduceIv.setVisibility(View.INVISIBLE);
                         buyCountTv.setVisibility(View.INVISIBLE);
-                        pickGoodMap.remove(goodInfo);
+                        info.setPickNum(count);
+                        pickGoodMap.remove(info.getGoods_id());
                     } else {
                         buyCountTv.setText(count + "");
-                        pickGoodMap.put(goodInfo, count);
+                        info.setPickNum(count);
+                        pickGoodMap.put(info.getGoods_id(), info);
                     }
-                    totalMoney-=goodInfo.getPrice();
+                    totalMoney -= info.getPrice();
 
-                    if(onMoneyChangeListener != null){
+                    if (onMoneyChangeListener != null) {
                         onMoneyChangeListener.onMoneyChange(totalMoney);
                     }
 
-                    BusProvider.getInstance().post(new GoodsListGoodAddEvent(pickGoodMap));
+                    BusProvider.getInstance().post(new GoodsListPickGoodsChangeEvent(pickGoodMap));
+                    notifyDataSetChanged();
                 }
             });
-
-            CommonUntil.showImageInIv(mContext,goodInfo.getImage(),goodImageIv);
-            goodNameTv.setText(goodInfo.getName());
-            saleCountTv.setText("月售" + goodInfo.getSales_number());
-            priceTv.setText("￥" + ((double) goodInfo.getPrice()) / 100 + "元/份");
         }
     }
 
@@ -277,18 +280,22 @@ public class GoodItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         void onMoneyChange(int money);
     }
 
-    @Subscribe public void changePickGoods(ShopingCartGoodAddEvent event){
+    @Subscribe public void changePickGoods(ShopingCartPickGoodsChangeEvent event){
         pickGoodMap = event.getPickGoods();
-        Iterator<GoodInfo> iterator = pickGoodMap.keySet().iterator();
+        reComputeTotalPrice();
+        notifyDataSetChanged();
+    }
+
+    private void reComputeTotalPrice(){
+        Iterator<GoodInfo> iterator = pickGoodMap.values().iterator();
         totalMoney = 0;
         while (iterator.hasNext()){
             GoodInfo goodInfo = iterator.next();
-            totalMoney += goodInfo.getPrice() * pickGoodMap.get(goodInfo);
+            totalMoney += goodInfo.getPrice() * goodInfo.getPickNum();
         }
         if(onMoneyChangeListener != null){
             onMoneyChangeListener.onMoneyChange(totalMoney);
         }
-        notifyDataSetChanged();
     }
 
     public void unRegisterBus(){

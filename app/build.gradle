@@ -4,7 +4,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 def globalConfig = rootProject.extensions.getByName("ext")
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.1'
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         applicationId "dreamspace.com.yoyomarket"
@@ -37,6 +37,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:' + SUPPORT_VERSION
     compile 'com.android.support:design:' + SUPPORT_VERSION
     compile 'com.android.support:cardview-v7:' + SUPPORT_VERSION
+    compile 'com.android.support:recyclerview-v7:' + SUPPORT_VERSION
     //dagger2
     compile 'com.google.dagger:dagger:2.0.2'
     apt 'com.google.dagger:dagger-compiler:2.0.2'
@@ -70,5 +71,7 @@ dependencies {
     compile 'cn.pedant.sweetalert:library:1.3'
     compile 'com.qiniu:qiniu-android-sdk:7.1.2'
     compile 'com.squareup:otto:1.3.8'
+    compile 'com.orhanobut:dialogplus:1.11@aar'
     compile files('libs/AMap_Location_v2.3.0_20160112.jar')
+    compile project(':lib:pingpp')
 }

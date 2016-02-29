@@ -21,6 +21,7 @@
     <color name="gray8">#F2F2F2</color>
     <color name="gray9">#6F6F6F</color>
     <color name="gray10">#7D7D7D</color>
+    <color name="gray11">#CDCDCD</color>
     <color name="shadow">#66333333</color>
     <color name="hint_color">#9F9F9F</color>
 </resources>

@@ -15,6 +15,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import dreamspace.com.yoyomarket.R;
+import dreamspace.com.yoyomarket.api.entity.element.SuggestionReq;
 import dreamspace.com.yoyomarket.common.base.BaseActivity;
 import dreamspace.com.yoyomarket.common.untils.ToastUntil;
 import dreamspace.com.yoyomarket.ui.presenter.activity.FeedbackActivityPresenter;
@@ -70,12 +71,31 @@ public class FeedbackActivity extends BaseActivity implements FeedbackView{
 
     @OnClick(R.id.submit_btn)
     void submit(){
-
+        if(isValiad()){
+            SuggestionReq suggestionReq = new SuggestionReq();
+            suggestionReq.setContent(feedbackEt.getText().toString().trim());
+            suggestionReq.setContact_info(contactEt.getText().toString().trim());
+            feedbackActivityPresenter.feedback(suggestionReq);
+        }
     }
 
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_feedback;
+    }
+
+    private boolean isValiad(){
+        if(feedbackEt.getText().toString().trim().length() < 6){
+            showToast(getString(R.string.feedback_content_length_remind));
+            return false;
+        }
+
+        if(contactEt.getText().toString().trim().length() == 0){
+            showToast(getString(R.string.plz_enter_contact_info));
+            return false;
+        }
+
+        return true;
     }
 
     @Override

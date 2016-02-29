@@ -5,6 +5,7 @@ package dreamspace.com.yoyomarket.api.entity.element;
  */
 public class SuggestionReq {
     private String content;
+    private String contact_info;
 
     public String getContent() {
         return content;
@@ -12,5 +13,13 @@ public class SuggestionReq {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getContact_info() {
+        return contact_info;
+    }
+
+    public void setContact_info(String contact_info) {
+        this.contact_info = contact_info;
     }
 }

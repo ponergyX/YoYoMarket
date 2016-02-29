@@ -50,6 +50,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/y23"
             android:background="@null"
+            android:maxLength="50"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <ImageView
@@ -66,6 +67,7 @@
         android:textSize="@dimen/y26"
         android:layout_gravity="right"
         android:background="@drawable/btn_orange_bg"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_marginTop="@dimen/y14"
         android:layout_marginRight="@dimen/y32"
         android:layout_width="@dimen/x227"

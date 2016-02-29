@@ -7,7 +7,6 @@
     <ImageView
         android:id="@+id/back_home"
         android:src="@drawable/go_back_icon"
-        android:rotation="90.0"
         android:padding="@dimen/x25"
         android:layout_marginLeft="@dimen/x10"
         android:layout_width="@dimen/x70"
@@ -49,8 +48,15 @@
             android:textColorHint="@color/hint_color"
             android:layout_marginLeft="@dimen/x15"
             android:layout_marginRight="@dimen/x20"
+            android:singleLine="true"
+            android:maxLength="20"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
 
+    <ImageView
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2" />
 </RelativeLayout>

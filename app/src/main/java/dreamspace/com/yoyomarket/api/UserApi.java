@@ -44,6 +44,6 @@ public interface UserApi {
     @GET("user/")
     Observable<UserInfo> getUserInfo();
 
-    @POST("suggestion/")
+    @POST("supermarket/suggestion/")
     Observable<SuggestionRes> suggest(@Body SuggestionReq suggestionReq);
 }

@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/white"
+    android:id="@+id/item_bg"
     android:layout_width="match_parent"
     android:layout_height="@dimen/y220">
     <ImageView
@@ -34,74 +35,52 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y2" />
     <ImageView
-        android:id="@+id/order_image_iv1"
+        android:id="@+id/order_image_iv"
         android:src="@drawable/ic_market"
-        android:padding="@dimen/x10"
         android:background="@drawable/order_image_bg"
         android:layout_below="@id/divider_below_clock"
         android:layout_marginLeft="@dimen/x31"
         android:layout_marginTop="@dimen/y24"
         android:layout_width="@dimen/x103"
         android:layout_height="@dimen/y103" />
-    <ImageView
-        android:id="@+id/order_image_iv2"
-        android:src="@drawable/shopping_cart"
-        android:padding="@dimen/x10"
-        android:background="@drawable/order_image_bg"
-        android:layout_below="@id/divider_below_clock"
-        android:layout_toRightOf="@id/order_image_iv1"
-        android:layout_marginLeft="@dimen/x17"
-        android:layout_marginTop="@dimen/y24"
-        android:layout_width="@dimen/x103"
-        android:layout_height="@dimen/y103" />
-    <Button
-        android:text="再来一单"
-        android:id="@+id/order_btn"
-        android:textColor="@color/white"
-        android:textSize="@dimen/y23"
+    <!--<ImageView-->
+        <!--android:id="@+id/order_image_iv2"-->
+        <!--android:src="@drawable/shopping_cart"-->
+        <!--android:padding="@dimen/x10"-->
+        <!--android:background="@drawable/order_image_bg"-->
+        <!--android:layout_below="@id/divider_below_clock"-->
+        <!--android:layout_toRightOf="@id/order_image_iv1"-->
+        <!--android:layout_marginLeft="@dimen/x17"-->
+        <!--android:layout_marginTop="@dimen/y24"-->
+        <!--android:layout_width="@dimen/x103"-->
+        <!--android:layout_height="@dimen/y103" />-->
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/y34"
         android:layout_marginRight="@dimen/x33"
-        android:background="@drawable/btn_orange_bg"
-        android:layout_width="@dimen/x152"
-        android:layout_height="@dimen/y40" />
-    <TextView
-        android:text="订单完成"
-        android:id="@+id/state_tv"
-        android:layout_alignParentRight="true"
-        android:layout_above="@id/order_btn"
-        android:layout_marginRight="@dimen/x55"
-        android:layout_marginBottom="@dimen/y15"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/y23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:id="@+id/in_send_ll"
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:layout_above="@id/order_btn"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/x47"
         android:gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
-            android:text="配送中"
+            android:text="订单完成"
+            android:id="@+id/state_tv"
+            android:layout_marginBottom="@dimen/y15"
             android:textColor="@color/gray"
             android:textSize="@dimen/y23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <TextView
-            android:text="预计8.30送达"
-            android:id="@+id/get_time_tv"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/y20"
-            android:layout_marginTop="@dimen/y9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/operate_btn"
+            android:text="再来一单"
+            android:textSize="@dimen/y23"
+            android:textColor="@color/white"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/btn_orange_bg"
+            android:layout_width="@dimen/x152"
+            android:layout_height="@dimen/y40" />
     </LinearLayout>
     <ImageView
         android:layout_alignParentBottom="true"

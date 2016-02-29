@@ -7,7 +7,7 @@ public class MarketInfo {
     private String name;
     private String image;
     private String notice;
-    private double score;
+    private int score;
 
     public String getName() {
         return name;
@@ -33,11 +33,11 @@ public class MarketInfo {
         this.notice = notice;
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(int score) {
         this.score = score;
     }
 }

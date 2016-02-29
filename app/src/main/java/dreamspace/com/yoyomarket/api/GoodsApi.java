@@ -14,5 +14,5 @@ public interface GoodsApi {
     Observable<Goods> getGoodsList(@Path("sup_id")String sup_id,@Query("catalog")String catalog);
 
     @GET("supermarket/{sup_id}/goods/search/")
-    Observable<Goods> searchShopGoods(@Path("sup_id")String sup_id,@Query("keyword")String keyword,@Query("page")int page);
+    Observable<Goods> searchShopGoods(@Path("sup_id")String sup_id,@Query("keyword")String keyword);
 }

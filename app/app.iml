@@ -83,6 +83,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.kennyc/multistateview/1.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.ogaclejapan.smarttablayout/library/1.6.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.ogaclejapan.smarttablayout/utils-v4/1.6.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.orhanobut/dialogplus/1.11/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.pnikosis/materialish-progress/1.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.squareup.leakcanary/leakcanary-android/1.3.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/2.0.0/jars" />
@@ -130,8 +131,8 @@
     <orderEntry type="library" exported="" name="adapter-rxjava-2.0.0-beta3" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="okhttp-3.0.1" level="project" />
-    <orderEntry type="library" exported="" name="dagger-2.0.2" level="project" />
     <orderEntry type="library" exported="" name="javax.inject-1" level="project" />
+    <orderEntry type="library" exported="" name="dagger-2.0.2" level="project" />
     <orderEntry type="library" exported="" name="rxandroid-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="materialish-progress-1.0" level="project" />
     <orderEntry type="library" exported="" name="rxjava-1.1.0" level="project" />
@@ -144,6 +145,8 @@
     <orderEntry type="library" exported="" name="logging-interceptor-3.0.1" level="project" />
     <orderEntry type="library" exported="" name="utils-v4-1.6.0" level="project" />
     <orderEntry type="library" exported="" name="library-1.3" level="project" />
+    <orderEntry type="library" exported="" name="dialogplus-1.11" level="project" />
     <orderEntry type="library" exported="" name="logger-1.12" level="project" />
+    <orderEntry type="module" module-name="pingpp" exported="" />
   </component>
 </module>

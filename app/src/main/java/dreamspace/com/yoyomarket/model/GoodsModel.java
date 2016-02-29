@@ -42,4 +42,8 @@ public class GoodsModel extends BaseModel<GoodsApi>{
             }
         });
     }
+
+    public Observable<Goods> searchGoods(String supId,String keyword){
+        return getService().searchShopGoods(supId,keyword);
+    }
 }

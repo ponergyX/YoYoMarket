@@ -5,4 +5,12 @@ package dreamspace.com.yoyomarket.api.entity.element;
  */
 public class OrderChannel {
     private String channel;
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
 }

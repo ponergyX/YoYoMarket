@@ -153,7 +153,11 @@ public class PickGoodsActivityPresenter implements Presenter{
                 }, new Action0() {
                     @Override
                     public void call() {
-                        pickGoodsView.showNormal(goods);
+                        if(goods.size() > 1){
+                            pickGoodsView.showNormal(goods);
+                        }else{
+                            pickGoodsView.showEmpty();
+                        }
                     }
                 });
     }

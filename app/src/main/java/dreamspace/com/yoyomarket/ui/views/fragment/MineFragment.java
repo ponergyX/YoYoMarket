@@ -27,6 +27,7 @@ import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 import dreamspace.com.yoyomarket.R;
+import dreamspace.com.yoyomarket.common.base.BaseActivity;
 import dreamspace.com.yoyomarket.common.base.BaseLazyFragment;
 import dreamspace.com.yoyomarket.common.untils.CommonUntil;
 import dreamspace.com.yoyomarket.common.untils.ImageCaptureManager;
@@ -34,6 +35,7 @@ import dreamspace.com.yoyomarket.common.untils.ToastUntil;
 import dreamspace.com.yoyomarket.common.untils.UploadImageUntil;
 import dreamspace.com.yoyomarket.ui.presenter.fragment.MineFragmentPresenter;
 import dreamspace.com.yoyomarket.ui.view.fragment.MineView;
+import dreamspace.com.yoyomarket.ui.views.activity.AddressActivity;
 import dreamspace.com.yoyomarket.ui.views.activity.ModifyPwdActivity;
 
 /**
@@ -149,7 +151,7 @@ public class MineFragment extends BaseLazyFragment implements MineView{
 
     @OnClick(R.id.get_good_address_rl)
     void checkAddressInfo(){
-        navigator.navigateToAddressActivity(getActivity());
+        navigator.navigateToAddressActivity((BaseActivity) getActivity(), 0,AddressActivity.CHECK_ADDRESS);
     }
 
     @OnClick(R.id.feedback_rl)

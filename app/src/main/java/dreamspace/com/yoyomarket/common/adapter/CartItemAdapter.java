@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
@@ -18,8 +17,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import dreamspace.com.yoyomarket.R;
 import dreamspace.com.yoyomarket.api.entity.element.GoodInfo;
-import dreamspace.com.yoyomarket.common.event.GoodsListGoodAddEvent;
-import dreamspace.com.yoyomarket.common.event.ShopingCartGoodAddEvent;
+import dreamspace.com.yoyomarket.common.event.GoodsListPickGoodsChangeEvent;
+import dreamspace.com.yoyomarket.common.event.ShopingCartPickGoodsChangeEvent;
 import dreamspace.com.yoyomarket.common.provider.BusProvider;
 
 /**
@@ -28,7 +27,7 @@ import dreamspace.com.yoyomarket.common.provider.BusProvider;
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHolder>{
 
     private Context mContext;
-    private HashMap<GoodInfo,Integer> pickGoods;
+    private HashMap<String,GoodInfo> pickGoods;
     private ArrayList<GoodInfo> dataList = new ArrayList<>();
     private OnCartCleanListener onCartCleanListener;
     private OnResizeRecyclerViewListener onResizeRecyclerViewListener;
@@ -57,16 +56,16 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
     public void cleanShoppingCart(){
         dataList.clear();
         pickGoods.clear();
-        BusProvider.getInstance().post(new ShopingCartGoodAddEvent(pickGoods));
+        BusProvider.getInstance().post(new ShopingCartPickGoodsChangeEvent(pickGoods));
         if(onCartCleanListener != null){
             onCartCleanListener.onCartClean();
         }
     }
 
-    @Subscribe public void pickGoodsChange(GoodsListGoodAddEvent event){
+    @Subscribe public void pickGoodsChange(GoodsListPickGoodsChangeEvent event){
         pickGoods = event.getPickGoods();
         dataList.clear();
-        dataList.addAll(pickGoods.keySet());
+        dataList.addAll(pickGoods.values());
         notifyDataSetChanged();
     }
 
@@ -105,7 +104,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
         public void onBindView(int position){
             final GoodInfo goodInfo = dataList.get(position);
 
-            count = pickGoods.get(goodInfo);
+            count = goodInfo.getPickNum();
             numTv.setText(count+"");
 
             goodNameTv.setText(goodInfo.getName());
@@ -115,9 +114,10 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
                 public void onClick(View v) {
                     if(++count <= 99){
                         numTv.setText(count + "");
-                        pickGoods.put(goodInfo, count);
+                        goodInfo.setPickNum(count);
+                        pickGoods.put(goodInfo.getGoods_id(), goodInfo);
                         priceTv.setText("￥" + ((double)goodInfo.getPrice() * count)/100);
-                        BusProvider.getInstance().post(new ShopingCartGoodAddEvent(pickGoods));
+                        BusProvider.getInstance().post(new ShopingCartPickGoodsChangeEvent(pickGoods));
                     }else{
                         count--;
                     }
@@ -129,11 +129,13 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
                 public void onClick(View v) {
                     if (--count > 0) {
                         numTv.setText(count + "");
-                        pickGoods.put(goodInfo, count);
+                        goodInfo.setPickNum(count);
+                        pickGoods.put(goodInfo.getGoods_id(), goodInfo);
                         priceTv.setText("￥" + ((double) goodInfo.getPrice() * count) / 100);
                     } else {
                         count = 0;
-                        pickGoods.remove(goodInfo);
+                        goodInfo.setPickNum(count);
+                        pickGoods.remove(goodInfo.getGoods_id());
                         dataList.remove(goodInfo);
                         if (pickGoods.size() == 0 && onCartCleanListener != null) {
                             onCartCleanListener.onCartClean();
@@ -143,7 +145,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
                         }
                         notifyDataSetChanged();
                     }
-                    BusProvider.getInstance().post(new ShopingCartGoodAddEvent(pickGoods));
+                    BusProvider.getInstance().post(new ShopingCartPickGoodsChangeEvent(pickGoods));
                 }
             });
         }

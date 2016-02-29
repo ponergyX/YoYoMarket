@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_marginTop="@dimen/y32"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/state_iv"
+            android:src="@drawable/order_hook_ic"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_width="@dimen/x51"
+            android:layout_height="@dimen/x51" />
+        <TextView
+            android:id="@+id/state_tv"
+            android:layout_gravity="center_vertical"
+            android:text="@string/already_got_good"
+            android:textSize="@dimen/y24"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/line_rl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y237"
+        android:layout_width="@dimen/x600"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/line"
+            android:src="@color/gray11"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/x574"
+            android:layout_height="@dimen/y2" />
+        <ImageView
+            android:id="@+id/order_submit_iv"
+            android:src="@drawable/order_circle_s"
+            android:layout_width="@dimen/x26"
+            android:layout_height="@dimen/x26" />
+        <ImageView
+            android:id="@+id/market_receive_iv"
+            android:src="@drawable/order_circle_s"
+            android:layout_toRightOf="@id/order_submit_iv"
+            android:layout_marginLeft="@dimen/x165"
+            android:layout_width="@dimen/x26"
+            android:layout_height="@dimen/x26" />
+        <ImageView
+            android:id="@+id/comment_iv"
+            android:src="@drawable/order_circle_s"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/x26"
+            android:layout_height="@dimen/x26" />
+        <ImageView
+            android:id="@+id/get_good_iv"
+            android:src="@drawable/order_circle_s"
+            android:layout_toLeftOf="@id/comment_iv"
+            android:layout_marginRight="@dimen/x165"
+            android:layout_width="@dimen/x26"
+            android:layout_height="@dimen/x26" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/cart_iv1"
+        android:src="@drawable/shopping_cart"
+        android:layout_alignBottom="@+id/line_rl"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_width="@dimen/x115"
+        android:layout_height="@dimen/x110" />
+
+    <ImageView
+        android:id="@+id/cart_iv2"
+        android:src="@drawable/shopping_cart"
+        android:layout_toRightOf="@id/cart_iv1"
+        android:layout_alignBottom="@+id/line_rl"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_width="@dimen/x115"
+        android:layout_height="@dimen/x110" />
+    <ImageView
+        android:id="@+id/cart_iv4"
+        android:src="@drawable/shopping_cart"
+        android:layout_alignBottom="@+id/line_rl"
+        android:layout_marginRight="@dimen/x40"
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/x115"
+        android:layout_height="@dimen/x110" />
+    <ImageView
+        android:id="@+id/cart_iv3"
+        android:src="@drawable/shopping_cart"
+        android:layout_toLeftOf="@id/cart_iv4"
+        android:layout_alignBottom="@+id/line_rl"
+        android:layout_marginRight="@dimen/x60"
+        android:layout_width="@dimen/x115"
+        android:layout_height="@dimen/x110" />
+
+    <TextView
+        android:id="@+id/order_submit_tv"
+        android:text="@string/order_submit"
+        android:textSize="@dimen/y24"
+        android:textColor="@color/black"
+        android:layout_below="@id/line_rl"
+        android:layout_marginTop="@dimen/y21"
+        android:layout_marginLeft="@dimen/x32"
+        android:layout_marginBottom="@dimen/y47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/receive_tv"
+        android:text="@string/market_receive_order"
+        android:textSize="@dimen/y24"
+        android:textColor="@color/black"
+        android:layout_toRightOf="@id/order_submit_tv"
+        android:layout_below="@id/line_rl"
+        android:layout_marginTop="@dimen/y21"
+        android:layout_marginLeft="@dimen/x90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/commented_tv"
+        android:text="@string/commented"
+        android:textSize="@dimen/y24"
+        android:textColor="@color/black"
+        android:layout_below="@id/line_rl"
+        android:layout_marginTop="@dimen/y21"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/got_good_tv"
+        android:text="@string/commented"
+        android:textSize="@dimen/y24"
+        android:textColor="@color/black"
+        android:layout_below="@id/line_rl"
+        android:layout_marginTop="@dimen/y21"
+        android:layout_toLeftOf="@id/commented_tv"
+        android:layout_marginRight="@dimen/x118"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_below="@id/order_submit_tv"
+        android:background="@color/gray2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2" />
+    <RelativeLayout
+        android:id="@+id/operate_rl"
+        android:layout_below="@id/order_submit_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y65">
+        <Button
+            android:id="@+id/operate_btn"
+            android:text="@string/go_comment"
+            android:textColor="@color/white"
+            android:textSize="@dimen/y24"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x32"
+            android:background="@drawable/btn_orange_bg"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="@dimen/x152"
+            android:layout_height="@dimen/y40" />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+
+</RelativeLayout>

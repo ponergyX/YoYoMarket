@@ -23,4 +23,6 @@ public interface PickGoodsView extends View{
     void showLoading();
 
     void showNormal(HashMap<String,ArrayList<GoodInfo>> goods);
+
+    void showEmpty();
 }

@@ -11,6 +11,12 @@
         android:layout_width="@dimen/x471"
         android:layout_height="@dimen/y50">
         <ImageView
+            android:id="@+id/divider_phone"
+            android:background="@color/app_color"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+        <ImageView
             android:id="@+id/phone_iv"
             android:src="@drawable/ic_phone_num"
             android:layout_marginLeft="@dimen/x28"
@@ -22,6 +28,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/y17"
             android:layout_alignParentRight="true"
+            style="?android:attr/borderlessButtonStyle"
             android:background="@drawable/btn_orange_bg"
             android:layout_width="@dimen/x115"
             android:layout_height="@dimen/y37" />
@@ -40,11 +47,6 @@
             android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-        <ImageView
-            android:layout_alignParentBottom="true"
-            android:background="@color/app_color"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y2" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -76,8 +78,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <ImageView
+            android:id="@+id/divider_code"
             android:layout_alignParentBottom="true"
-            android:background="@color/app_color"
+            android:src="@color/app_color"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y2" />
     </RelativeLayout>
@@ -111,8 +114,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <ImageView
+            android:id="@+id/divider_pwd"
             android:layout_alignParentBottom="true"
-            android:background="@color/app_color"
+            android:src="@color/app_color"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y2" />
     </RelativeLayout>
@@ -146,8 +150,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <ImageView
+            android:id="@+id/divider_pwd_confirm"
             android:layout_alignParentBottom="true"
-            android:background="@color/app_color"
+            android:src="@color/app_color"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y2" />
     </RelativeLayout>
@@ -161,6 +166,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/y36"
         android:background="@drawable/btn_orange_bg"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="@dimen/x477"
         android:layout_height="@dimen/y67" />
 </RelativeLayout>

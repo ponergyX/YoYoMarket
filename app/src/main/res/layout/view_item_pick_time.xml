@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/click_white_bg"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y80">
+    <TextView
+        android:id="@+id/time_tv"
+        android:text="9:00"
+        android:textColor="@color/black1"
+        android:textSize="@dimen/y25"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/divider"
+        android:background="@color/gray2"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginRight="@dimen/x30"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2" />
+</RelativeLayout>

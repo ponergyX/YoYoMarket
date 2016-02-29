@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:id="@+id/order_detail_ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:background="@color/gray2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2" />
+    <LinearLayout
+        android:id="@+id/market_ll"
+        android:orientation="horizontal"
+        android:background="@drawable/click_white_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y65">
+        <ImageView
+            android:src="@drawable/order_market_ic"
+            android:layout_marginLeft="@dimen/x31"
+            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/y32"
+            android:layout_height="@dimen/y31" />
+        <TextView
+            android:text="中超超市"
+            android:textColor="@color/black"
+            android:textSize="@dimen/y24"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:background="@color/gray2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y65">
+        <TextView
+            android:id="@+id/total_tv"
+            android:text="合计: ￥5.8"
+            android:textColor="@color/black"
+            android:textSize="@dimen/y24"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x33"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:background="@color/gray2"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2" />
+    </RelativeLayout>
+</LinearLayout>

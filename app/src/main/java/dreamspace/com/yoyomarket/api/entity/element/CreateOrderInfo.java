@@ -7,10 +7,9 @@ import java.util.ArrayList;
  */
 public class CreateOrderInfo {
     private String address_id;
-    private double price;
+    private int price;
     private String remark;
     private String sup_id;
-    private String order_time;
     private String deliver_time;
     private ArrayList<BuyGoodItem> goods;
 
@@ -20,14 +19,6 @@ public class CreateOrderInfo {
 
     public void setAddress_id(String address_id) {
         this.address_id = address_id;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getRemark() {
@@ -46,14 +37,6 @@ public class CreateOrderInfo {
         this.sup_id = sup_id;
     }
 
-    public String getOrder_time() {
-        return order_time;
-    }
-
-    public void setOrder_time(String order_time) {
-        this.order_time = order_time;
-    }
-
     public String getDeliver_time() {
         return deliver_time;
     }
@@ -68,5 +51,13 @@ public class CreateOrderInfo {
 
     public void setGoods(ArrayList<BuyGoodItem> goods) {
         this.goods = goods;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

@@ -14,6 +14,8 @@
         app:msv_loadingView="@layout/common_loading_view"
         app:msv_emptyView="@layout/common_empty_view">
         <RelativeLayout
+            android:id="@+id/pick_rl"
+            android:background="@color/gray2"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <include

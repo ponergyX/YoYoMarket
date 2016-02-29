@@ -98,14 +98,12 @@ public class MarketsFragmentPresenter implements Presenter{
                                     marketsView.showNormal(markets.getResult(), GetDataType.LOAD_MORE);
                                 }
                             }
-
-                            marketsView.setLoadMoreFinish();
                         }
+                            marketsView.setLoadMoreFinish();
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        Logger.d(throwable.toString());
                         if (page == 1) {
                             marketsView.showErrorViewState();
                         }

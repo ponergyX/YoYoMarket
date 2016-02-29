@@ -42,6 +42,12 @@ import dreamspace.com.yoyomarket.widget.circleProgress.CircleProgress;
  */
 public class AddressActivity extends BaseActivity implements AddressView{
 
+    public static final String ADDRESS_MODE = "ADDRESS_MODE";
+    public static final String ADDRESS_INFO = "ADDRESS_INFO";
+    public static final String ADDRESS_ID = "ADDRESS_ID";
+    public static final int PICK_ADDRESS = 1;
+    public static final int CHECK_ADDRESS = 2;
+
     @Bind(R.id.address_msview)
     MultiStateView multiStateView;
 
@@ -58,11 +64,14 @@ public class AddressActivity extends BaseActivity implements AddressView{
     private AddressItemAdapter adapter;
     private AlertDialog deleteDialog;
     private SweetAlertDialog sweetAlertDialog;
+    private int mode;
     private static final int ADD_ADDRESS_REQUEST = 1;
     private static final int MODIFY_ADDRESS_REQUEST = 2;
 
-    public static Intent getCallingIntent(Context context){
-      return new Intent(context,AddressActivity.class);
+    public static Intent getCallingIntent(Context context,int mode){
+        Intent intent = new Intent(context,AddressActivity.class);
+        intent.putExtra(ADDRESS_MODE, mode);
+        return intent;
     }
 
     @Override
@@ -90,7 +99,12 @@ public class AddressActivity extends BaseActivity implements AddressView{
 
     @Override
     protected void initViewsAndEvents() {
-        setTitle(getString(R.string.get_good_info));
+        mode = getIntent().getIntExtra(ADDRESS_MODE,CHECK_ADDRESS);
+        if(mode == PICK_ADDRESS){
+            setTitle(getString(R.string.pick_address));
+        }else{
+            setTitle(getString(R.string.get_good_info));
+        }
         refreshLayout.setColorSchemeResources(R.color.app_color);
         initMultiStateView();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -102,13 +116,26 @@ public class AddressActivity extends BaseActivity implements AddressView{
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setHasFixedSize(true);
 
-        adapter.setOnAddressClickListener(new AddressItemAdapter.OnAddressClickListener() {
-            @Override
-            public void onClick(String addressId, AddressInfo addressInfo) {
-                navigator.navigateToModifyAddressActivity(AddressActivity.this, ModifyAddressActivity.MODIFY_ADDRESS,
-                        MODIFY_ADDRESS_REQUEST, addressId, addressInfo);
-            }
-        });
+        if(mode == PICK_ADDRESS){
+            adapter.setOnAddressClickListener(new AddressItemAdapter.OnAddressClickListener() {
+                @Override
+                public void onClick(String addressId, AddressInfo addressInfo) {
+                    Intent intent = new Intent();
+                    intent.putExtra(ADDRESS_ID,addressId);
+                    intent.putExtra(ADDRESS_INFO,addressInfo);
+                    setResult(RESULT_OK,intent);
+                    finish();
+                }
+            });
+        }else{
+            adapter.setOnAddressClickListener(new AddressItemAdapter.OnAddressClickListener() {
+                @Override
+                public void onClick(String addressId, AddressInfo addressInfo) {
+                    navigator.navigateToModifyAddressActivity(AddressActivity.this, ModifyAddressActivity.MODIFY_ADDRESS,
+                            MODIFY_ADDRESS_REQUEST, addressId, addressInfo);
+                }
+            });
+        }
 
         adapter.setOnAddressLongClickListener(new AddressItemAdapter.OnAddressLongClickListener() {
             @Override

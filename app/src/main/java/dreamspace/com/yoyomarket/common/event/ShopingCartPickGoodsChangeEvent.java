@@ -7,18 +7,18 @@ import dreamspace.com.yoyomarket.api.entity.element.GoodInfo;
 /**
  * Created by Lx on 2016/2/23.
  */
-public class ShopingCartGoodAddEvent {
-    private HashMap<GoodInfo,Integer> pickGoods;
+public class ShopingCartPickGoodsChangeEvent {
+    private HashMap<String,GoodInfo> pickGoods;
 
-    public ShopingCartGoodAddEvent(HashMap<GoodInfo,Integer> pickGoods){
+    public ShopingCartPickGoodsChangeEvent(HashMap<String, GoodInfo> pickGoods){
         this.pickGoods = pickGoods;
     }
 
-    public HashMap<GoodInfo, Integer> getPickGoods() {
+    public HashMap<String,GoodInfo> getPickGoods() {
         return pickGoods;
     }
 
-    public void setPickGoods(HashMap<GoodInfo, Integer> pickGoods) {
+    public void setPickGoods(HashMap<String,GoodInfo> pickGoods) {
         this.pickGoods = pickGoods;
     }
 }

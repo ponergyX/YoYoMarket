@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import javax.inject.Inject;
 
@@ -51,6 +52,18 @@ public class ModifyPwdActivity extends BaseActivity implements ModifyPwdView{
     @Bind(R.id.confirm_btn)
     Button confirmBtn;
 
+    @Bind(R.id.divider_phone)
+    ImageView dividerPhone;
+
+    @Bind(R.id.divider_code)
+    ImageView dividerCode;
+
+    @Bind(R.id.divider_pwd)
+    ImageView dividerPwd;
+
+    @Bind(R.id.divider_pwd_confirm)
+    ImageView dividerPwdC;
+
     @Inject
     ModifyPwdActivityPresenter modifyPwdActivityPresenter;
 
@@ -87,7 +100,10 @@ public class ModifyPwdActivity extends BaseActivity implements ModifyPwdView{
         }else if(mode == FIND_BACK_PASSWORD){
             setTitle(getString(R.string.find_back_pwd));
         }
-
+        dividerPhone.setImageResource(R.color.app_color);
+        dividerCode.setImageResource(R.color.app_color);
+        dividerPwd.setImageResource(R.color.app_color);
+        dividerPwdC.setImageResource(R.color.app_color);
         getCodeBtn.setEnabled(false);
         getCodeBtn.setBackgroundResource(R.drawable.btn_gray_bg);
         phoneEt.addTextChangedListener(new TextWatcher() {

@@ -9,12 +9,14 @@ public class OrderInfo {
     private String name;
     private String address;
     private String phone_num;
-    private double price;
+    private int price;
     private String remark;
     private String sup_id;
     private String order_time;
     private String deliver_time;
-    private String state;
+    private int status;
+    private String buyer;
+    private String sup_phone_num;
     private ArrayList<OrderGoodsItem> goods;
 
     public String getName() {
@@ -39,14 +41,6 @@ public class OrderInfo {
 
     public void setPhone_num(String phone_num) {
         this.phone_num = phone_num;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getRemark() {
@@ -81,19 +75,43 @@ public class OrderInfo {
         this.deliver_time = deliver_time;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public ArrayList<OrderGoodsItem> getGoods() {
         return goods;
     }
 
     public void setGoods(ArrayList<OrderGoodsItem> goods) {
         this.goods = goods;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(String buyer) {
+        this.buyer = buyer;
+    }
+
+    public String getSup_phone_num() {
+        return sup_phone_num;
+    }
+
+    public void setSup_phone_num(String sup_phone_num) {
+        this.sup_phone_num = sup_phone_num;
     }
 }

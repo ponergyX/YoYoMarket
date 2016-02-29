@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <include layout="@layout/common_toolbar"/>
-    <include layout="@layout/view_order_pay_remain"/>
-    <include
-        android:id="@+id/bottom_bar"
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/multi_state_view"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y97"
-        android:layout_alignParentBottom="true"
-        layout="@layout/order_pay_bottom_bar"/>
-    <ScrollView
-        android:layout_below="@+id/remain_ll"
-        android:layout_above="@id/bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include layout="@layout/view_order_detail"/>
-    </ScrollView>
+        android:layout_below="@+id/toolbar"
+        app:msv_errorView="@layout/common_retry_view"
+        app:msv_loadingView="@layout/common_loading_view"
+        app:msv_emptyView="@layout/common_empty_view">
+        <RelativeLayout
+            android:background="@color/gray3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <include
+                android:id="@+id/bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y97"
+                android:layout_alignParentBottom="true"
+                layout="@layout/order_pay_bottom_bar"/>
+            <ScrollView
+                android:layout_above="@id/bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <include layout="@layout/view_order_detail"/>
+            </ScrollView>
+        </RelativeLayout>
+    </com.kennyc.view.MultiStateView>
 </RelativeLayout>
