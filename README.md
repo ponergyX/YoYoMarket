@@ -6,8 +6,7 @@ Android app for Dreamspace
 
 #Screenshot
 <img src="http://i4.tietuku.com/0ccb179a9639662f.jpg" width = "360" height = "640" alt="图片名称" align=center />
-![](http://i4.tietuku.com/0ccb179a9639662f.jpg)
-![](http://i4.tietuku.com/f474e03e257323bf.jpg)
+<img src="http://i4.tietuku.com/f474e03e257323bf.jpg" width = "360" height = "640" alt="图片名称" align=center />
 
 #项目依赖
 </br>
