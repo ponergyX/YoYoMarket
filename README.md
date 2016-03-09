@@ -5,8 +5,8 @@ Android app for Dreamspace
 在线超市购物Android APP，使用MVP架构开发。
 
 #Screenshot
-<img src="http://i4.tietuku.com/0ccb179a9639662f.jpg" width = "360" height = "640" alt="图片名称" align=center />
-<img src="http://i4.tietuku.com/f474e03e257323bf.jpg" width = "360" height = "640" alt="图片名称" align=center />
+<img src="http://imglf2.nosdn.127.net/img/VkpRTTBCa05EeDhOekxHdS9zUUpzWTlvOTA5QkxSQVhTRHQwdHpkM0xEdy9tOFZlM2owdTd3PT0.jpg?imageView&thumbnail=500x0&quality=96&stripmeta=0&type=jpg" width = "360" height = "640" alt="图片名称" align=center />
+<img src="http://imglf1.nosdn.127.net/img/VkpRTTBCa05EeDhOekxHdS9zUUpzYk9QOCttNkMzMVFQMmlpSDBkY1FRc1hlRjNwT0ZZMFVRPT0.jpg?imageView&thumbnail=500x0&quality=96&stripmeta=0&type=jpg" width = "360" height = "640" alt="图片名称" align=center />
 
 #项目依赖
 </br>
